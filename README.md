@@ -1,10 +1,8 @@
 
 
-###### Thirza Dado (10492682)
-###### Programming project
-###### Tuesday 06 June 2017
-
-
+##### Thirza Dado (10492682)
+##### Programming project
+##### Tuesday 06 June 2017
 
 ### Project proposal: ‘medicalization of misery?’
 
@@ -25,14 +23,13 @@ This data visualization will display an interactive map of Europe and the corres
 * Country 3	DU
 * …
 
-![sketch1](.\doc\afb1.png "afb1")
-
-
+![sketch1](doc\afb1.png "afb1")
+![sketch1](https://raw.githubusercontent.com/Mangodream01/programming-project/master/doc/afb1.jpg)
 
 ##### Variable 2: Drug use in Europe
 
 When clicking on a country, a bar chart appears with the annual prevalence of drug use of six types of drugs (x axis) as percentage of the population between 15-64 years old (unless otherwise indicated) (y axis): prevalence of amphetamines, cannabis, cocaine, ecstasy-type substances, opioids (including other illicit opioids and prescription opioids), and opiates (also includes problem opiate users). Unfortunately, data points per drug type per country are from different years, and, therefore, the most recent year is used and mentioned when hoovering over the bar of interest.
 
-![sketch2](.\doc\afb2.png "afb2")
+![sketch2](doc\afb2.png "afb2")
 
 
