@@ -24,7 +24,6 @@ This data visualization will display an interactive map of Europe and the corres
 * …
 
 ![sketch1](doc\afb1.png "afb1")
-![sketch1](https://raw.githubusercontent.com/Mangodream01/programming-project/master/doc/afb1.jpg)
 
 ##### Variable 2: Drug use in Europe
 
@@ -32,4 +31,4 @@ When clicking on a country, a bar chart appears with the annual prevalence of dr
 
 ![sketch2](doc\afb2.png "afb2")
 
-
+I'm sorry that the images are not visible in github.. I don't know how to make them appear; I'll ask the assistance tomorrow!
