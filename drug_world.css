@@ -1,0 +1,31 @@
+/*Name: Thirza Dado */
+/*Student number: 10492682*/
+/*This style program adds style features to my interactive d3 map*/
+
+
+svg {
+    background-color: white;
+}
+
+h1 {
+    color: rgb(115, 115, 115);
+    font-size: 18px;
+    font-family: sans-serif;
+    font-weight: bold;
+    margin: 0;
+    padding-bottom: 10px;
+}
+
+#container {
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: white;
+}
+
+path:hover {
+    fill: rgba(8, 81, 156, 0.2);
+    cursor:pointer;
+}

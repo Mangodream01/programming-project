@@ -1,34 +1,35 @@
 
 
-##### Thirza Dado (10492682)
-##### Programming project
-##### Tuesday 06 June 2017
+###### Thirza Dado (10492682)
+###### Programming project
+###### Tuesday 06 June 2017
 
 ### Project proposal: ‘medicalization of misery?’
 
-Firstly, I am curious if I can detect a relationship between ‘freedom to make life choices’ and the overall happiness score of a country. Secondly, I am interested if a trend can be found in drug use when a country is less or more happy. This data visualization will display a map of Europe. There can be switched between years 2008-2014 by means of a drop-down menu or a slider (I don’t know the smoothest way to build this yet). Hoovering over a country will display a tooltip with the country’s name. Countries can be clicked on, and will cause population number, gross domestic product (GDP), and happiness score (2013-2015, World Happiness Report) to appear in a separate section (maybe a canvas element) next to the map.
-(data: population, GDP, and happiness score in 2008-2014)
+In this programming project, European countries will be researched within the framework of ‘happiness’ (World Happiness Report). A map of Europe will display various variables that are measured between 2008-2014 (color code (d3 color scale gradient) over separate windows), and changes over these years can be viewed by means of a time slider. When clicked on, the variable values will neatly appear next to the map. Moreover, you can play with the variables through parallel coordinates.
+(http://worldhappiness.report/ed/2016/) 
 
+Variables example:
+Healthy life expectancy at birth": "70.51219177",
+      "Positive affect": "0.659085035",
+      "Generosity": "-0.000629284",
+      "country": "Slovenia",
+      "Perceptions of corruption": "0.892197907",
+      "Democratic Quality": "",
+      "Freedom to make life choices": "0.896007299",
+      "Life Ladder": "5.740642071",
+      "Confidence in national government": "0.202604815",
+      "year": "2015",
+      "Log GDP per capita": "10.26922512",
+      "Social support": "0.901163757",
+      "Negative affect": "0.26141873"
 
-##### Variable 1: ‘Freedom to make life choices’ in Europe
-
-This data visualization will display an interactive map of Europe and the corresponding score of ‘freedom to make life choices’ (World Happiness Report) displayed in color code (d3 color scale gradient). Differences between countries at one time point can be viewed, and difference in this freedom within each country becomes clear by sliding between 2008-2014; I expect the colors to change over the years. The freedom score will be displayed in the tooltip when hoovering over a country, below the country name.
-(http://worldhappiness.report/ed/2016/)
-
-*Data format:*
-
-* Name,	Code,	Population,	GDP,	Happy,	Score2008,	Score2009,	Score2010, ...
-* Country 1	NL
-* Country 2	BE
-* Country 3	DU
-* …
 
 ![sketch1](doc\afb1.png "afb1")
 
-##### Variable 2: Drug use in Europe
-
-When clicking on a country, a bar chart appears with the annual prevalence of drug use of six types of drugs (x axis) as percentage of the population between 15-64 years old (unless otherwise indicated) (y axis): prevalence of amphetamines, cannabis, cocaine, ecstasy-type substances, opioids (including other illicit opioids and prescription opioids), and opiates (also includes problem opiate users). Unfortunately, data points per drug type per country are from different years, and, therefore, the most recent year is used and mentioned when hoovering over the bar of interest.
+Secondly, I am interested if a trend can be found in drug use when a country is less or more happy. When clicking on a country, a bar chart appears with the annual prevalence of drug use of five types of drugs (x axis) as percentage of the population between 15-64 years old (unless otherwise indicated) (y axis): prevalence of amphetamines, cannabis, cocaine, ecstasy-type substances, opioids (including other illicit opioids and prescription opioids), and opiates (also includes problem opiate users). Unfortunately, data points per drug type per country are from different years, and, therefore, the most recent year is used and mentioned when hoovering over the bar of interest.
 
 ![sketch2](doc\afb2.png "afb2")
 
-I'm sorry that the images are not visible in github.. I don't know how to make them appear; I'll ask the assistance tomorrow!
+
+*(I'm sorry that the images are not visible in this document itself on github.. They can be found in the folder 'doc')*
