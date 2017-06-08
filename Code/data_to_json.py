@@ -282,37 +282,52 @@ for row in reader_1:
 
 # create empty dictionary
 happydata_EU = {}
-# iterate over world data
-counter = 0
+# iterate over world countries
 for i in range(len(happydata)):
+    # iterate over EU countries
     for j in range(len(country_list)):
-        key = 0
         # it is an EU country
         if happydata[i]["country"] == country_list[j][0]:
             # find matching country code
+            key = 0
             for k in country_code:
                 if happydata[i]["country"] == k[2]:
                     key = k[1]
-        # key is dictionary
-        if key != 0:
-            happydata_EU[key] = {happydata[i]["year"]: happydata[i]}
+            # matching year and country code
+            if not happydata[i]["year"] in happydata_EU and key != 0:
+                happydata_EU[happydata[i]["year"]] = {key: {'Country': happydata[i]["country"],
+                                                            'Healthy life expectancy at birth': happydata[i]['Healthy life expectancy at birth'],
+                                                            'Positive affect': happydata[i]['Positive affect'],
+                                                            'Generosity': happydata[i]['Generosity'],
+                                                            'Perceptions of corruption': happydata[i]['Perceptions of corruption'],
+                                                            'Democratic Quality': happydata[i]['Democratic Quality'],
+                                                            'Freedom to make life choices': happydata[i]['Freedom to make life choices'],
+                                                            'Life Ladder': happydata[i]['Life Ladder'],
+                                                            'Confidence in national government': happydata[i]['Confidence in national government'],
+                                                            'Log GDP per capita': happydata[i]['Log GDP per capita'],
+                                                            'Social support': happydata[i]['Social support'],
+                                                            'Negative affect': happydata[i]['Negative affect']
+                                                            }}
 
-
-
-
-
-            # dict[sublist_world[i][0]] = {"data": sublist_females[i], "fillKey": j}
-
-    # happydata_EU[k[2]] = {happydata[i]["year"]: happydata[i]}
-
-
-
-        # try:
-        #     print
-        # except ValueError:
-        #     pass
-
-
+            elif happydata[i]["year"] in happydata_EU and key != 0:
+                happydata_EU[happydata[i]["year"]].update({key: {'Country': happydata[i]["country"],
+                                                            'Healthy life expectancy at birth': happydata[i]['Healthy life expectancy at birth'],
+                                                            'Positive affect': happydata[i]['Positive affect'],
+                                                            'Generosity': happydata[i]['Generosity'],
+                                                            'Perceptions of corruption': happydata[i]['Perceptions of corruption'],
+                                                            'Democratic Quality': happydata[i]['Democratic Quality'],
+                                                            'Freedom to make life choices': happydata[i]['Freedom to make life choices'],
+                                                            'Life Ladder': happydata[i]['Life Ladder'],
+                                                            'Confidence in national government': happydata[i]['Confidence in national government'],
+                                                            'Log GDP per capita': happydata[i]['Log GDP per capita'],
+                                                            'Social support': happydata[i]['Social support'],
+                                                            'Negative affect': happydata[i]['Negative affect']
+                                                            }})
 
 # convert to json
 jsonfile.write(unicode(json.JSONEncoder().encode(happydata_EU)))
+
+# try:
+#     print
+# except ValueError:
+#     pass
