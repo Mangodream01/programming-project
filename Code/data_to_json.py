@@ -8,9 +8,9 @@ This script converts csv to json format.
 import csv, json, io
 
 # open files
-happyfile = open('happy_data.csv', 'r')
-countryfile = open('countries.csv', 'r')
-jsonfile = io.open('file.json', 'w')
+happyfile = open('Code/happy_data.csv', 'r')
+countryfile = open('Code/countries.csv', 'r')
+jsonfile = io.open('Code/file.json', 'w')
 
 # country codes
 country_code = [
@@ -293,7 +293,8 @@ for i in range(len(happydata)):
             for k in country_code:
                 if happydata[i]["country"] == k[2]:
                     key = k[1]
-            # matching year and country code
+
+            # year to country code to variables
             if not happydata[i]["year"] in happydata_EU and key != 0:
                 happydata_EU[happydata[i]["year"]] = {key: {'Country': happydata[i]["country"],
                                                             'Healthy life expectancy at birth': happydata[i]['Healthy life expectancy at birth'],
@@ -324,10 +325,6 @@ for i in range(len(happydata)):
                                                             'Negative affect': happydata[i]['Negative affect']
                                                             }})
 
+
 # convert to json
 jsonfile.write(unicode(json.JSONEncoder().encode(happydata_EU)))
-
-# try:
-#     print
-# except ValueError:
-#     pass
