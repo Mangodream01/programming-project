@@ -29,14 +29,21 @@ path:hover {
     fill: rgba(8, 81, 156, 0.2);
     cursor:pointer;
     stroke-width: 3;
-
 }
 
 div.tooltip {
-  line-height: 1;
-  font-weight: bold;
-  padding: 12px;
-  background: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  border-radius: 2px;
+    line-height: 1;
+    font: 12px calibri;
+    padding: 5px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 2px;
+}
+
+.dropdown {
+    position:absolute;
+    top: 0px;
+    right: 0px;
+    transition: .5s ease;
+    float: right;
 }

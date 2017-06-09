@@ -42,15 +42,15 @@ window.onload = function() {
 			.attr("stroke", "#ffffff")
 			.attr("fill", "#ffffff");
 
-		fillDataInGraph();
+		fillDataInGraph("2012", "Life Ladder");
 	});
 
-	function fillDataInGraph() {
+	function fillDataInGraph(year, variable) {
 		d3.json("./file.json", function (error, data) {
 			if (error) throw error;
 
 			// colors
-			var c = [['#ffffcc', '#ffeda0', '#fed976', '#feb24c', '#fd8d3c', '#fc4e2a', '#e31a1c', '#bd0026', '#800026'],
+			var col = [['#ffffcc', '#ffeda0', '#fed976', '#feb24c', '#fd8d3c', '#fc4e2a', '#e31a1c', '#bd0026', '#800026'],
 				['#fff7ec', '#fee8c8', '#fdd49e', '#fdbb84', '#fc8d59', '#ef6548', '#d7301f', '#b30000', '#7f0000'],
 				['#fff5f0', '#fee0d2', '#fcbba1', '#fc9272', '#fb6a4a', '#ef3b2c', '#cb181d', '#a50f15', '#67000d'],
 				['#f7f4f9', '#e7e1ef', '#d4b9da', '#c994c7', '#df65b0', '#e7298a', '#ce1256', '#980043', '#67001f'],
@@ -62,9 +62,8 @@ window.onload = function() {
 				['#ffffe5', '#f7fcb9', '#d9f0a3', '#addd8e', '#78c679', '#41ab5d', '#238443', '#006837', '#004529'],
 				['#f7fcfd', '#e5f5f9', '#ccece6', '#99d8c9', '#66c2a4', '#41ae76', '#238b45', '#006d2c', '#00441b']];
 
-
 			// scales
-			var b = [[4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5],
+			var bucket = [[4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8],	// extra 8 added!
 				[9.25, 9.5, 9.75, 10, 10.25, 10.5, 10.75, 11],
 				[0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1],
 				[60, 62, 64, 66, 68, 70, 72, 74],
@@ -75,78 +74,120 @@ window.onload = function() {
 				[0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.48],
 				[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8],
 				[-1, -0.55, -0.1, 0, 0.35, 0.8, 1.25, 1.7]
-
 			];
 
-			// loop over 2012
-			Object.keys(data["2012"]).forEach(function (country) {
+			// which list
+			if (variable == "Life Ladder") {
+				c = col[0];
+				b = bucket[0];
+			}
+			else if (variable == "Log GDP per capita") {
+				c = col[1];
+				b = bucket[1];
+			}
+			else if (variable == "Social support") {
+				c = col[2];
+				b = bucket[2];
+			}
+			else if (variable == "Healthy life expectancy at birth") {
+				c = col[3];
+				b = bucket[3];
+			}
+			else if (variable == "Freedom to make life choices") {
+				c = col[4];
+				b = bucket[4];
+			}
+			else if (variable == "Generosity") {
+				c = col[5];
+				b = bucket[5];
+			}
+			else if (variable == "Perceptions of corruption") {
+				c = col[6];
+				b = bucket[6];
+			}
+			else if (variable == "Positive affect") {
+				c = col[7];
+				b = bucket[7];
+			}
+			else if (variable == "Negative affect") {
+				c = col[8];
+				b = bucket[8];
+			}
+			else if (variable == "Confidence in national government") {
+				c = col[9];
+				b = bucket[9];
+			}
+			else if (variable == "Democratic Quality") {
+				c = col[10];
+				b = bucket[10];
+			}
+
+
+			// loop over year
+			Object.keys(data[year]).forEach(function (country) {
 				// loop over EU country
-				var LifeL = +data["2012"][country]["Life Ladder"];
+				var score = +data[year][country][variable];
 				var curCountry = "#" + country;
 
 				// Define the div for the tooltip
-				var div = d3.select("body").append("div")
+				var tooltip = d3.select("body")
+					.append("div")
 					.attr("class", "tooltip")
-					.style("opacity", 0);
+					.style("position", "absolute")
+					.style("z-index", "8")
+					.style("visibility", "hidden")
+					.html(function () {
+						return "Country: " + data["2012"][country]["Country"] + '<br>' +
+							variable + ": " + Math.round(score * 100) / 100;
+					});
 
 				// popupTemplate
-				d3.select(curCountry).on('mouseover', function(d){
+				d3.select(curCountry).on("mouseover", function () {
+					return tooltip.style("visibility", "visible");
+				})
+					.on("mousemove", function () {
+						return tooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px");
+					})
+					.on("mouseout", function () {
+						return tooltip.style("visibility", "hidden");
+					});
 
-					div.transition()
-						// .duration(200)
-						.style("opacity", .9);
-					div	.html("hey")
-						.style("left", (d3.event.pageX) + "px")
-						.style("top", (d3.event.pageY - 28) + "px");
-						})
-					.on("mouseout", function(d) {
-						div.transition()
-						// .duration(500)
-						.style("opacity", 0);
-
-
-
-					// div.transition()
-
-					// d3.select(this).style("fill", "aliceblue");
-
-				});
-
-
-
-				if (LifeL < b[0]) {
-					d3.select(curCountry).attr("fill", c[0][0]);
-				}
-				else if (LifeL > b[0][0] && LifeL < b[0][1]) {
-					d3.select(curCountry).attr("fill", c[0][1]);
-				}
-				else if (LifeL > b[0][1] && LifeL < b[0][2]) {
-					d3.select(curCountry).attr("fill", c[0][2]);
-				}
-				else if (LifeL > b[0][2] && LifeL < b[0][3]) {
-					d3.select(curCountry).attr("fill", c[0][3]);
-				}
-				else if (LifeL > b[0][3] && LifeL < b[0][4]) {
-					d3.select(curCountry).attr("fill", c[0][4]);
-				}
-				else if (LifeL > b[0][4] && LifeL < b[0][5]) {
-					d3.select(curCountry).attr("fill", c[0][5]);
-				}
-				else if (LifeL > b[0][5] && LifeL < b[0][6]) {
-					d3.select(curCountry).attr("fill", c[0][6]);
-				}
-				else if (LifeL > b[0][6] && LifeL < b[0][7]) {
-					d3.select(curCountry).attr("fill", c[0][7]);
-				}
-				else if (LifeL > b[0][7]) {
-					d3.select(curCountry).attr("fill", c[0][8]);
+				// color coding
+				for (var i = 0; i < c[0].length; i++) {
+					if (score < b[0]) {
+						d3.select(curCountry).attr("fill", c[0]);
+					}
+					else if (score > b[0] && score < b[1]) {
+						d3.select(curCountry).attr("fill", c[1]);
+					}
+					else if (score > b[1] && score < b[2]) {
+						d3.select(curCountry).attr("fill", c[2]);
+					}
+					else if (score > b[2] && score < b[3]) {
+						d3.select(curCountry).attr("fill", c[3]);
+					}
+					else if (score > b[3] && score < b[4]) {
+						d3.select(curCountry).attr("fill", c[4]);
+					}
+					else if (score > b[4] && score < b[5]) {
+						d3.select(curCountry).attr("fill", c[5]);
+					}
+					else if (score > b[5] && score < b[6]) {
+						d3.select(curCountry).attr("fill", c[6]);
+					}
+					else if (score > b[6] && score < b[7]) {
+						d3.select(curCountry).attr("fill", c[7]);
+					}
+					else if (score > b[7]) {
+						d3.select(curCountry).attr("fill", c[8]);
+					}
 				}
 			});
 
 			// legend
 			var threshold = d3.scaleThreshold()
-				.domain([2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8])
-				.range(c[0]);
+				.domain(b)
+				.range(c);
 
 			// set linear scale
 			var x = d3.scaleLinear()
@@ -184,11 +225,14 @@ window.onload = function() {
 				});
 		})
 	}
+
+	// change map when button clicked
+	d3.selectAll(".m").on("click", function () {
+		var variable = this.getAttribute("value");
+		fillDataInGraph("2012", variable)
+
+	})
 };
-
-
-
-
 
 
 			// zo kom ik bij id (country_code) map
