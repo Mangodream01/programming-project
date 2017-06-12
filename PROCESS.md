@@ -14,6 +14,7 @@ Converted csv to json in python in the way I wanted. Loaded it into the JavaScri
 ##### 09-06-2017 
 I made buckets for EU countries in python, picked multiple color gradients, and wrote a first legend in JS. I played around with my EU map and its style. I improved my csv-to-json python script and my JS code. I also made tooltips with information, and a dropdown menu to switch happiness variables!
 
-
+##### 12-06-2017 
+Instead of hardcoded buckets, I am now trying to use code to bucket the happiness scores dynamically. I hope I can make it as nice as the visualization with hardcoded buckets, because right now it looks bad (it does work though!). In this way, legend and color fills in the map happen dynamically when input is changed. I also lost my tooltips at the back of my map. I hope I’ll find them back tomorrow.
 
 
