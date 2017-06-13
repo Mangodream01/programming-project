@@ -17,4 +17,7 @@ I made buckets for EU countries in python, picked multiple color gradients, and 
 ##### 12-06-2017 
 Instead of hardcoded buckets, I am now trying to use code to bucket the happiness scores dynamically. I hope I can make it as nice as the visualization with hardcoded buckets, because right now it looks bad (it does work though!). In this way, legend and color fills in the map happen dynamically when input is changed. I also lost my tooltips at the back of my map. I hope I’ll find them back tomorrow.
 
+##### 13-06-2017 
+Legend and color coding are better, but still far from perfect. I still lost my tooltips, and will try to make d3-tips instead (tip from Gosia). I made a time slider, which almost works. I think it’s time to leave this visualization for a while, and start with parallel coordinates.
+
 
