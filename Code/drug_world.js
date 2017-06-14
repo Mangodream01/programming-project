@@ -4,11 +4,17 @@
  * This JavaScript program contains functions to create an interactive world map
  */
 
+// global variables
+var years = "2012";
+var variable = "Life Ladder";
+
+// get year from slider
+function give_year (year) {
+	fillDataInGraph(year, variable);
+}
+
 // make map
 window.onload = function() {
-
-	var years = "2012";
-	var variable = "Life Ladder";
 
 	// width and height
 	var w = 600;
@@ -50,20 +56,15 @@ window.onload = function() {
 
 		// first data view
 		fillDataInGraph(years, variable);
-	});
 
-	// drag years
-	d3.select("svg")
-		.on("start drag", function() {
-			// hue(x.invert(d3.event.x));
-			// years = Math.round(x.invert(d3.event.x));
-			console.log(years);
-			// fillDataInGraph(years, variable);
-		});
+		// add parallel coordinates
+		add_graph();
+
+	});
 
 	// change map when button clicked
 	d3.selectAll(".m").on("click", function () {
-		var variable = this.getAttribute("value");
+		variable = this.getAttribute("value");
 		fillDataInGraph(years, variable);
 	});
 };

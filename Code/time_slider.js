@@ -38,6 +38,7 @@ function insert_slider() {
             .on("start drag", function () {
                 hue(x.invert(d3.event.x));
                 years = Math.round(x.invert(d3.event.x));
+                give_year(years);
             }));
 
     // slider ticks
@@ -71,5 +72,4 @@ function insert_slider() {
         handle.attr("cx", x(h));
         return h;
     }
-    return years;
 }
