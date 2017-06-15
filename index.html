@@ -7,49 +7,73 @@
 
 <html lang="en">
     <head>
+        <title>Programming project</title>
         <meta charset="UTF-8">
-        <title>World Map</title>
-            <link rel="stylesheet" type="text/css" href="Code/drug_world.css"/>
-    </head>
-    <body>
-    <!--sources-->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js"></script>
+        <script src="Code/JS/testd3.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
         <script src="http://datamaps.github.io/scripts/0.4.4/datamaps.world.min.js"></script>
-        <div id="container" >
-            <h1>European happiness</h1>
-        </div>
-        <script src="Code/drug_world.js"></script>
-        <svg width="960" height="50"><g transform="translate(0,0)"></g></svg>
-        <script src="https://d3js.org/d3.v4.min.js"></script>
-        <!--<script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>-->
         <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script src="Code/JS/d3-legend.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="Code/CSS/drug_world.css"/>
+        <link rel="stylesheet" href="Code/CSS/parallelcoordinates.css" />
 
-        <!--Time slider-->
-        <!--<svg id = "slider" width="960" height="480"></svg>-->
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand navbar-brand-centered">Happiness in Europe (2006-2015)</a>
+                </div>
+			<ul class="nav navbar-nav navbar-right">
+				<!--<li>-->
+					<!--<a data-target=".modal-information" data-toggle="modal" href="#">Information</a>-->
+				<!--</li>-->
+				<li>
+					<a href="https://github.com/Mangodream01/programming-project">Thirza Dado</a>
+				</li>
+			</ul>
+		</div>
+        </nav>
 
-        <!--Dropdown menu-->
-        <div class="dropdown">
-        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" >Happiness variables
-        <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-                <li class="dropdown-header">Happiness variables</li>
-                <li><a class="m" value="Life Ladder" href="#">Life Ladder</a></li>
-                <li><a class="m" value="Log GDP per capita" href="#">Log GDP per capita</a></li>
-                <li><a class="m" value="Social support" href="#">Social support</a></li>
-                <li><a class="m" value="Healthy life expectancy at birth" href="#">Healthy life expectancy at birth</a></li>
-                <li><a class="m" value="Freedom to make life choices" href="#">Freedom to make life choices</a></li>
-                <li><a class="m" value="Generosity" href="#">Generosity</a></li>
-                <li><a class="m" value="Perceptions of corruption" href="#">Perceptions of corruption</a></li>
-                <li><a class="m" value="Positive affect" href="#">Positive affect</a></li>
-                <li><a class="m" value="Negative affect" href="#">Negative affect</a></li>
-                <li><a class="m" value="Confidence in national government" href="#">Confidence in national government</a></li>
-                <li><a class="m" value="Democratic Quality" href="#">Democratic Quality</a></li>
-            </ul>
+        <div class="wrapper">
+
+            <!--List-->
+            <div class="list">
+                <h4> Pick a variable:</h4>
+                <ul class="list-group">
+                    <li class="list-group-item"><a class="m" value="Life Ladder" href="#">Life Ladder</a></li>
+                    <li class="list-group-item"><a class="m" value="Log GDP per capita" href="#">Log GDP per capita</a></li>
+                    <li class="list-group-item"><a class="m" value="Social support" href="#">Social support</a></li>
+                    <li class="list-group-item"><a class="m" value="Healthy life expectancy at birth" href="#">Healthy life expectancy at birth</a></li>
+                    <li class="list-group-item"><a class="m" value="Freedom to make life choices" href="#">Freedom to make life choices</a></li>
+                    <li class="list-group-item"><a class="m" value="Generosity" href="#">Generosity</a></li>
+                    <li class="list-group-item"><a class="m" value="Perceptions of corruption" href="#">Perceptions of corruption</a></li>
+                    <li class="list-group-item"><a class="m" value="Positive affect" href="#">Positive affect</a></li>
+                    <li class="list-group-item"><a class="m" value="Negative affect" href="#">Negative affect</a></li>
+                    <li class="list-group-item"><a class="m" value="Confidence in national government" href="#">Confidence in national government</a></li>
+                    <li class="list-group-item"><a class="m" value="Democratic Quality" href="#">Democratic Quality</a></li>
+                </ul>
+            </div>
+            <div id="container" ></div>
         </div>
+        <br><br><br><br>
+        <div id="graph_div"></div>
 
+
+        <footer class="container-fluid text-center">
+                <h6>Source: <a href="http://worldhappiness.report/">World Happiness Report</a></h6>
+        </footer>
+
+        <script src="Code/JS/fillDataInGraph.js"></script>
+        <script src="Code/JS/time_slider.js"></script>
+        <script src="Code/JS/parallelcoordinates.js"></script>
+        <script src="Code/JS/drug_world.js"></script>
     </body>
 </html>

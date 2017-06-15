@@ -27,7 +27,7 @@ function add_graph(){
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     // load in data
-    d4.csv("file.csv", function(error, data) {
+    d4.csv("Code/PY and files/file.csv", function(error, data) {
 
         // select data per year
         var year_data = [];

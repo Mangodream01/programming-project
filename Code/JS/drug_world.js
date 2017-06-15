@@ -37,7 +37,7 @@ window.onload = function() {
 		.attr("height", h);
 
 	//Load in GeoJSON data
-	d3.json("raw.json", function (json) {
+	d3.json("Code/PY and files/raw.json", function (json) {
 
 		//Bind data and create one path per GeoJSON feature
 		svg_1.selectAll("path")

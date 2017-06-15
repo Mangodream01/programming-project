@@ -1,6 +1,6 @@
 // function 1 fill data in graph
 function fillDataInGraph(year, variable) {
-	d3.json("./file.json", function (error, data) {
+	d3.json("Code/PY and files/file.json", function (error, data) {
 		if (error) throw error;
 
 		// empty scoreArray
@@ -12,13 +12,6 @@ function fillDataInGraph(year, variable) {
 				scoreArray.push(+data[years][countries][variable])
 			});
 		});
-
-		// for (var i = 0; i < scoreArray.length; i++){
-		// 	if (scoreArray[i] < 8){
-		// 		console.log(scoreArray[i]);
-		// 	}
-		// }
-
 
 		var variables = ["Life Ladder", "Log GDP per capita", "Social support", "Healthy life expectancy at birth",
 			"Freedom to make life choices", "Generosity", "Perceptions of corruption", "Positive affect",
