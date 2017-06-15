@@ -32,7 +32,7 @@ function add_graph(){
         // select data per year
         var year_data = [];
         Object.values(data).forEach(function (d) {
-            if (d["year"] == "2012") {
+            if (d["year"] == "2014") {
                 year_data.push(d);
             }
         });
@@ -43,7 +43,6 @@ function add_graph(){
             .domain(d4.extent(data, function(p) { return +p[d]; }))
             .range([height, 0]));
         }));
-
 
         // Add grey background lines for context.
         background = svg.append("g")
@@ -100,8 +99,6 @@ function add_graph(){
             .style("text-anchor", "middle")
             .attr("y", -9)
             .text(function(d) { return d; });
-
-
 
         // Add and store a brush for each axis.
         g.append("g")

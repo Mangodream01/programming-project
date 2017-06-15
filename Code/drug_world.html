@@ -7,28 +7,43 @@
 
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
         <title>Programming project</title>
-            <!--sources-->
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-            <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js"></script>
-            <script src="testd3.js"></script>
-            <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
-            <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
-            <script src="http://datamaps.github.io/scripts/0.4.4/datamaps.world.min.js"></script>
-            <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
-            <script src="https://d3js.org/d3.v4.min.js"></script>
-            <script src="d3-legend.js"></script>
-
-        <!--stylesheets-->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js"></script>
+        <script src="testd3.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+        <script src="http://datamaps.github.io/scripts/0.4.4/datamaps.world.min.js"></script>
+        <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script src="d3-legend.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="drug_world.css"/>
         <link rel="stylesheet" href="parallelcoordinates.css" />
 
     </head>
     <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand navbar-brand-centered">Happiness in Europe (2006-2015)</a>
+                </div>
+			<ul class="nav navbar-nav navbar-right">
+				<!--<li>-->
+					<!--<a data-target=".modal-information" data-toggle="modal" href="#">Information</a>-->
+				<!--</li>-->
+				<li>
+					<a href="https://github.com/Mangodream01/programming-project">Thirza Dado</a>
+				</li>
+			</ul>
+		</div>
+        </nav>
+
         <div class="wrapper">
+
             <!--List-->
             <div class="list">
                 <h4> Pick a variable:</h4>
@@ -48,10 +63,17 @@
             </div>
             <div id="container" ></div>
         </div>
+        <br><br><br><br>
         <div id="graph_div"></div>
+
+
+        <footer class="container-fluid text-center">
+                <h6>Source: <a href="http://worldhappiness.report/">World Happiness Report</a></h6>
+        </footer>
+
         <script src="fillDataInGraph.js"></script>
         <script src="time_slider.js"></script>
-        <script src="drug_world.js"></script>
         <script src="parallelcoordinates.js"></script>
+        <script src="drug_world.js"></script>
     </body>
 </html>

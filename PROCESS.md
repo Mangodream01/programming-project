@@ -20,4 +20,13 @@ Instead of hardcoded buckets, I am now trying to use code to bucket the happines
 ##### 13-06-2017 
 Legend and color coding are better, but still far from perfect. I still lost my tooltips, and will try to make d3-tips instead (tip from Gosia). I made a time slider, which almost works. I think it’s time to leave this visualization for a while, and start with parallel coordinates.
 
+##### 14-06-2017 
+Time slider is properly linked with the map, and I made a graph with parallel coordinates! Tooltips and legend are still not working.
+
+##### 15-06-2017 
+Today I worked on the layout, found my tooltips back, and the legend is finally working properly! The scales of the dimensions of parallel coordinates are all good now. Tomorrow, it’s time to link parallel coordinates to the EU map. I want a line to light up when a country gets clicked upon, and a tooltip displaying country and score when hoovering over the line in the graph. I decided to stick to this data, and not use drug data anymore. My third visualization will be a scatterplot in which all variables can be analyzed against each other. 
+
+
+
+
 
