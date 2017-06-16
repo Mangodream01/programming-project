@@ -17,9 +17,9 @@ function fillDataInGraph(year, variable) {
 			"Freedom to make life choices", "Generosity", "Perceptions of corruption", "Positive affect",
 			"Negative affect", "Confidence in national government", "Democratic Quality"];
 
-		var col = [["#d2691e", "#fcf1e9"], ["#d62f29", "#fbeaea"], ["#b04f66", "#f7edf0"], ["#7e629d", "#f2eff5"],
-			["#92b558", "#f3f7ed"], ["#ad5d5d", "#f6eeee"], ["#588c7e", "#eff5f4"], ["#41ab5d", "#d9f0a3"],
-			["#e08214", "#fee0b6"], ["#01665e", "#c7eae5"], ["#8c510a", "#dfc27d"]];
+		var col = [["#d2691e", "#fcf1e9"], ["#d62f29", "#fbeaea"], ["#b04f66", "#f7edf0"], ["#50394c", "#eae1e8"],
+			["#617c36", "#f3f7ed"], ["#ad5d5d", "#f6eeee"], ["#90653c", "#f7f2ed"], ["#7a7a52", "#e0e0d1"],
+			["#e08214", "#fee0b6"], ["#cc5520", "#c7eae5"], ["#8c510a", "#dfc27d"]];
 
 		// color per variable
 		for (var i = 0; i < variables.length; i++){

@@ -1,7 +1,7 @@
 // create svg slider
 function insert_slider() {
 
-    var years;
+    var years = "2012";
     var svg = d3.select("svg"),
         margin = {right: 20, left: 120},
         width = +svg.attr("width") - margin.left - margin.right,
@@ -37,8 +37,10 @@ function insert_slider() {
             })
             .on("start drag", function () {
                 hue(x.invert(d3.event.x));
-                years = Math.round(x.invert(d3.event.x));
-                give_year(years);
+                if (Math.round(x.invert(d3.event.x)) != years) {
+                    years = Math.round(x.invert(d3.event.x));
+                    give_year(years);
+                }
             }));
 
     // slider ticks

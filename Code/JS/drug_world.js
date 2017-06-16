@@ -8,10 +8,19 @@
 var years = "2012";
 var variable = "Life Ladder";
 
-// get year from slider
+
+// global function: get year from slider
 function give_year (year) {
 	fillDataInGraph(year, variable);
+	update_graph(year);
 }
+
+// data
+var happydata;
+d4.csv("Code/PY and files/file.csv", function(error, data) {
+	happydata = data;
+});
+console.log(happydata); // HIER BEN IK LAAD CSV IN EEN VAR VOOR AANROEPEN SLIDER
 
 // make map
 window.onload = function() {
@@ -58,7 +67,7 @@ window.onload = function() {
 		fillDataInGraph(years, variable);
 
 		// add parallel coordinates
-		add_graph();
+		add_graph(years);
 
 	});
 

@@ -26,6 +26,8 @@ Time slider is properly linked with the map, and I made a graph with parallel co
 ##### 15-06-2017 
 Today I worked on the layout, found my tooltips back, and the legend is finally working properly! The scales of the dimensions of parallel coordinates are all good now. Tomorrow, it’s time to link parallel coordinates to the EU map. I want a line to light up when a country gets clicked upon, and a tooltip displaying country and score when hoovering over the line in the graph. I decided to stick to this data, and not use drug data anymore. My third visualization will be a scatterplot in which all variables can be analyzed against each other. 
 
+##### 16-06-2017 
+Today I linked the parallel coordinates to the time slider. Now, it updates with happiness data that corresponds to the selected year. However, it should function more efficiently. I am working on that. Moreover, I played with style.
 
 
 

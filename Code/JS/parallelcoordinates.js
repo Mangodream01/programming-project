@@ -1,6 +1,6 @@
-// add_graph()
+
 // add parallel coordinates
-function add_graph(){
+function add_graph(years){
 
     // margins
     var margin = {top: 30, right: 10, bottom: 10, left: 10},
@@ -32,7 +32,7 @@ function add_graph(){
         // select data per year
         var year_data = [];
         Object.values(data).forEach(function (d) {
-            if (d["year"] == "2014") {
+            if (d["year"] == years) {
                 year_data.push(d);
             }
         });
@@ -111,7 +111,6 @@ function add_graph(){
             .attr("width", 16);
     });
 
-    // functions
     function position(d) {
         var v = dragging[d];
         return v == null ? x(d) : v;
@@ -145,5 +144,106 @@ function add_graph(){
         });
     }
 }
+
+// update parallel coordinates
+function update_graph(years){
+
+    d4.select('g.background').remove();
+    d4.select('g.foreground').remove();
+
+    // margins
+    var margin = {top: 30, right: 10, bottom: 10, left: 10},
+        width = 1000 - margin.left - margin.right,
+        height = 300 - margin.top - margin.bottom;
+
+    // x, y, dragging
+    var x = d4.scale.ordinal().rangePoints([0, width], 1),
+        y = {},
+        dragging = {};
+
+    // define line
+    var line = d4.svg.line(),
+        axis = d4.svg.axis().orient("left"),
+        background,
+        foreground;
+
+    // define svg
+    var svg = d4.select("#graph")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    // load in data
+    d4.csv("Code/PY and files/file.csv", function(error, data) {
+
+        // select data per year
+        var year_data = [];
+        Object.values(data).forEach(function (d) {
+            if (d["year"] == years) {
+                year_data.push(d);
+            }
+        });
+
+        // Extract the list of dimensions and create a scale for each.
+        x.domain(dimensions = d4.keys(data[0]).filter(function(d) {
+            return d != "country" && d != "year" && (y[d] = d4.scale.linear()
+            .domain(d4.extent(data, function(p) { return +p[d]; }))
+            .range([height, 0]));
+        }));
+
+        // Add grey background lines for context.
+        background = svg.append("g")
+            .attr("class", "background")
+            .selectAll("path")
+            .data(year_data)
+            .enter().append("path")
+            .attr("d", path);
+
+        // Add blue foreground lines for focus.
+        foreground = svg.append("g")
+            .attr("class", "foreground")
+            .selectAll("path")
+            .data(year_data)
+            .enter().append("path")
+            .attr("d", path);
+    });
+
+    function position(d) {
+        var v = dragging[d];
+        return v == null ? x(d) : v;
+    }
+
+    function transition(g) {
+        return g.transition().duration(500);
+    }
+
+    // Returns the path for a given data point.
+    function path(d) {
+        return line(dimensions.map(function(p) { return [position(p), y[p](d[p])]; }));
+    }
+
+    function brushstart() {
+        d4.event.sourceEvent.stopPropagation();
+    }
+
+    // Handles a brush event, toggling the display of foreground lines.
+    function brush() {
+        var actives = dimensions.filter(function (p) {
+                return !y[p].brush.empty();
+            }),
+            extents = actives.map(function (p) {
+                return y[p].brush.extent();
+            });
+        foreground.style("display", function (d) {
+            return actives.every(function (p, i) {
+                return extents[i][0] <= d[p] && d[p] <= extents[i][1];
+            }) ? null : "none";
+        });
+    }
+}
+
+
+
 
 
