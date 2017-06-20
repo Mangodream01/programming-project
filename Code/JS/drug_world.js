@@ -4,23 +4,23 @@
  * This JavaScript program contains functions to create an interactive world map
  */
 
+
+// load in data from csv
+d4.csv("Code/PY and files/file.csv", function(error, data) {
+	happydata = data;
+});
+
 // global variables
 var years = "2012";
 var variable = "Life Ladder";
+var happydata;
 
 
 // global function: get year from slider
 function give_year (year) {
 	fillDataInGraph(year, variable);
-	update_graph(year);
+	add_graph(year);
 }
-
-// data
-var happydata;
-d4.csv("Code/PY and files/file.csv", function(error, data) {
-	happydata = data;
-});
-console.log(happydata); // HIER BEN IK LAAD CSV IN EEN VAR VOOR AANROEPEN SLIDER
 
 // make map
 window.onload = function() {
@@ -69,6 +69,8 @@ window.onload = function() {
 		// add parallel coordinates
 		add_graph(years);
 
+		// add scatter plot
+		scatter(years);
 	});
 
 	// change map when button clicked
@@ -76,4 +78,13 @@ window.onload = function() {
 		variable = this.getAttribute("value");
 		fillDataInGraph(years, variable);
 	});
+
+    // click event: haal country eruit, geef mee aan nieuwe functie (console log)
+    // country aan nieuwe functie: selecter lijn in #graph
+    // d3.select(){
+
+    // }
+
+
+
 };

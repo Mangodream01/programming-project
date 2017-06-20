@@ -1,5 +1,7 @@
 #graph {
     font: 10px sans-serif;
+    display: block;
+    margin: auto;
 }
 
 .background path {
@@ -10,7 +12,7 @@
 
 .foreground path {
     fill: none;
-    stroke: #6a51a3;
+    stroke: #778899;
 }
 
 .brush .extent {
@@ -22,11 +24,20 @@
 .axis line,
 .axis path {
     fill: none;
-    stroke: #525252;
+    stroke: #000;
     shape-rendering: crispEdges;
 }
 
 .axis text {
     text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
     cursor: move;
+}
+
+div.tip {
+    line-height: 1;
+    font: 12px sans-serif;
+    padding: 5px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 2px;
 }

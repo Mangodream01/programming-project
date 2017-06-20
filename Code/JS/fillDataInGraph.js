@@ -13,13 +13,29 @@ function fillDataInGraph(year, variable) {
 			});
 		});
 
-		var variables = ["Life Ladder", "Log GDP per capita", "Social support", "Healthy life expectancy at birth",
-			"Freedom to make life choices", "Generosity", "Perceptions of corruption", "Positive affect",
-			"Negative affect", "Confidence in national government", "Democratic Quality"];
+		var variables = ["Life Ladder",
+			"Log GDP per capita",
+			"Social support",
+			"Healthy life expectancy at birth",
+			"Freedom to make life choices",
+			"Generosity",
+			"Perceptions of corruption",
+			"Positive affect",
+			"Negative affect",
+			"Confidence in national government",
+			"Democratic Quality"];
 
-		var col = [["#d2691e", "#fcf1e9"], ["#d62f29", "#fbeaea"], ["#b04f66", "#f7edf0"], ["#50394c", "#eae1e8"],
-			["#617c36", "#f3f7ed"], ["#ad5d5d", "#f6eeee"], ["#90653c", "#f7f2ed"], ["#7a7a52", "#e0e0d1"],
-			["#e08214", "#fee0b6"], ["#cc5520", "#c7eae5"], ["#8c510a", "#dfc27d"]];
+		var col = [["#672e3b", "#f7edf0"],
+			["#b04f66", "#f7edf0"],
+			["#647d4f", "#e5ebe0"],
+			["#617c36", "#f3f7ed"],
+			["#50394c", "#eae1e8"],
+			["#ad5d5d", "#f6eeee"],
+			["#b47e4b", "#f7f2ed"],
+			["#7a7a52", "#e0e0d1"],
+			["#D2691E", "#fee0b6"],
+			["#9c9a40", "#e9e8c9"],
+			["#b88961", "#f7f2ed"]];
 
 		// color per variable
 		for (var i = 0; i < variables.length; i++){
@@ -89,6 +105,17 @@ function fillDataInGraph(year, variable) {
 				.on("mouseout", function () {
 					return tooltip.style("visibility", "hidden");
 				});
+
+
+			// select line parallel coordinates when country clicked
+			d4.select(curCountry).on("click", function(){
+				var country_name = "#" + data[year][country]["Country"];
+
+				d4.select(country_name)
+					.style("stroke", "#92B558")
+					.style("stroke-width", "4")
+					.style("fill-opacity", 0.8);
+			});
 		});
 	});
 }

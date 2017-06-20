@@ -29,6 +29,7 @@ Today I worked on the layout, found my tooltips back, and the legend is finally 
 ##### 16-06-2017 
 Today I linked the parallel coordinates to the time slider. Now, it updates with happiness data that corresponds to the selected year. However, it should function more efficiently. I am working on that. Moreover, I played with style.
 
-
+##### 19-06-2017 
+Today I made a start with my third visualization: a scatter plot. I also refined the parallel coordinates, and linked it to my EU map. 
 
 

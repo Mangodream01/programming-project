@@ -13,37 +13,37 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js"></script>
+        <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
         <script src="Code/JS/testd3.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
         <script src="http://datamaps.github.io/scripts/0.4.4/datamaps.world.min.js"></script>
-        <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
         <script src="https://d3js.org/d3.v4.min.js"></script>
         <script src="Code/JS/d3-legend.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="Code/CSS/drug_world.css"/>
         <link rel="stylesheet" href="Code/CSS/parallelcoordinates.css" />
+        <link rel="stylesheet" href="Code/CSS/scatter.css" charset="utf-8">
 
     </head>
     <body>
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand navbar-brand-centered">Happiness in Europe (2006-2015)</a>
+                    <a class="navbar-brand navbar-brand-centered">
+                        Variance in happiness through Europe
+                    </a>
                 </div>
 			<ul class="nav navbar-nav navbar-right">
-				<!--<li>-->
-					<!--<a data-target=".modal-information" data-toggle="modal" href="#">Information</a>-->
-				<!--</li>-->
 				<li>
 					<a href="https://github.com/Mangodream01/programming-project">Thirza Dado</a>
 				</li>
 			</ul>
 		</div>
         </nav>
-
-        <div class="wrapper">
-
+        <h3>Happiness in Europe (2006-2015)</h3>
+        <div class="flexcontainer">
+            <div id="container" ></div>
             <!--List-->
             <div class="list">
                 <h4> Pick a variable:</h4>
@@ -61,10 +61,19 @@
                     <li class="list-group-item"><a class="m" value="Democratic Quality" href="#">Democratic Quality</a></li>
                 </ul>
             </div>
-            <div id="container" ></div>
         </div>
-        <br><br><br><br>
+        <br><br>
+        <hr>
+        <br><br>
+        <h3>Parallel coordinates</h3>
         <div id="graph_div"></div>
+        <br><br>
+        <hr>
+        <br><br>
+        <h3>Scatter plot</h3>
+        <br>
+        <div id="scatter"></div>
+        <input type="button" name="xAxis" value="xAxis">
 
 
         <footer class="container-fluid text-center">
@@ -74,6 +83,7 @@
         <script src="Code/JS/fillDataInGraph.js"></script>
         <script src="Code/JS/time_slider.js"></script>
         <script src="Code/JS/parallelcoordinates.js"></script>
+        <script src="Code/JS/scatter.js" charset="utf-8"></script>
         <script src="Code/JS/drug_world.js"></script>
     </body>
 </html>

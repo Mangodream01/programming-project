@@ -59,24 +59,34 @@ footer {
   .row.content {height:auto;}
 }
 
-.wrapper {
-    overflow: hidden;
+.flexcontainer {
+  display: flex;
+  align-items: center;
+}
+@media (max-width: 320px) {
+    .flexcontainer {
+    display: block;
+    }
 }
 
 #container {
     width: 800px;
-    margin-left: auto;
+    margin-left: 200px;
     margin-right: auto;
-    margin-top: 70px;
+    margin-top: 20px;
     padding: 20px;
     background-color: white;
     overflow: hidden;
+    display: block;
 }
 
 .list {
-    float:left;
     width: 300px;
-    margin-top: 50px;
+    margin-left: auto;
+    margin-right: 200px;
+    margin-top: 0px;
+    display: block;
+
 }
 
 
