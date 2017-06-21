@@ -106,6 +106,26 @@ function fillDataInGraph(year, variable) {
 					return tooltip.style("visibility", "hidden");
 				});
 
+			//add hover event
+			var tip = d4.select("path")
+				.append("div")
+				.attr("class", "tip")
+				.style("position", "absolute")
+				.style("visibility", "hidden")
+				.html(curCountry);
+
+			var id = "#" + data[year][country]["Country"];
+			// show tooltip if hover
+			d4.select(id).on("mouseover", function () {
+				return tip.style("visibility", "visible");
+			})
+				.on("mousemove", function () {
+					return tip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px");
+				})
+				.on("mouseout", function () {
+					return tip.style("visibility", "hidden");
+				});
+
 
 			// select line parallel coordinates when country clicked
 			d4.select(curCountry).on("click", function(){

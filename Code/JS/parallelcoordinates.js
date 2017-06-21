@@ -1,6 +1,6 @@
 
 // add parallel coordinates
-function add_graph(years){
+function add_graph(years) {
 
     d4.select('#graph').remove();
 
@@ -37,10 +37,12 @@ function add_graph(years){
     });
 
     // Extract the list of dimensions and create a scale for each.
-    x.domain(dimensions = d4.keys(happydata[0]).filter(function(d) {
+    x.domain(dimensions = d4.keys(happydata[0]).filter(function (d) {
         return d != "country" && d != "year" && (y[d] = d4.scale.linear()
-        .domain(d4.extent(happydata, function(p) { return +p[d]; }))
-        .range([height, 0]));
+                .domain(d4.extent(happydata, function (p) {
+                    return +p[d];
+                }))
+                .range([height, 0]));
     }));
 
     // Add grey background lines for context.
@@ -50,7 +52,7 @@ function add_graph(years){
         .data(year_data)
         .enter().append("path")
         .attr("d", path)
-        .attr("id", function(d,i) {
+        .attr("id", function (d, i) {
             result = year_data[i]["country"];
             return result;
         });
@@ -62,7 +64,7 @@ function add_graph(years){
         .data(year_data)
         .enter().append("path")
         .attr("d", path)
-        .attr("id", function(d,i){
+        .attr("id", function (d, i) {
             result = year_data[i]["country"];
             return result;
         });
@@ -72,97 +74,62 @@ function add_graph(years){
         .data(dimensions)
         .enter().append("g")
         .attr("class", "dimension")
-        .attr("transform", function(d) { return "translate(" + x(d) + ")"; })
+        .attr("transform", function (d) {
+            return "translate(" + x(d) + ")";
+        })
         .call(d4.behavior.drag()
-        .origin(function(d) { return {x: x(d)}; })
-        .on("dragstart", function(d) {
-            dragging[d] = x(d);
-            background.attr("visibility", "hidden");
-        })
-        .on("drag", function(d) {
-            dragging[d] = Math.min(width, Math.max(0, d4.event.x));
-            foreground.attr("d", path);
-            dimensions.sort(function(a, b) { return position(a) - position(b); });
-            x.domain(dimensions);
-            g.attr("transform", function(d) { return "translate(" + position(d) + ")"; })
-        })
-        .on("dragend", function(d) {
-            delete dragging[d];
-            transition(d4.select(this)).attr("transform", "translate(" + x(d) + ")");
-            transition(foreground).attr("d", path);
-            background
-            .attr("d", path)
-            .transition()
-            .delay(500)
-            .duration(0)
-            .attr("visibility", null);
-        }));
+            .origin(function (d) {
+                return {x: x(d)};
+            })
+            .on("dragstart", function (d) {
+                dragging[d] = x(d);
+                background.attr("visibility", "hidden");
+            })
+            .on("drag", function (d) {
+                dragging[d] = Math.min(width, Math.max(0, d4.event.x));
+                foreground.attr("d", path);
+                dimensions.sort(function (a, b) {
+                    return position(a) - position(b);
+                });
+                x.domain(dimensions);
+                g.attr("transform", function (d) {
+                    return "translate(" + position(d) + ")";
+                })
+            })
+            .on("dragend", function (d) {
+                delete dragging[d];
+                transition(d4.select(this)).attr("transform", "translate(" + x(d) + ")");
+                transition(foreground).attr("d", path);
+                background
+                    .attr("d", path)
+                    .transition()
+                    .delay(500)
+                    .duration(0)
+                    .attr("visibility", null);
+            }));
 
     // Add an axis and title.
     g.append("g")
         .attr("class", "axis")
-        .each(function(d) { d4.select(this).call(axis.scale(y[d])); })
+        .each(function (d) {
+            d4.select(this).call(axis.scale(y[d]));
+        })
         .append("text")
         .style("text-anchor", "middle")
         .attr("y", -9)
-        .text(function(d) { return d; });
+        .text(function (d) {
+            return d;
+        });
 
     // Add and store a brush for each axis.
     g.append("g")
         .attr("class", "brush")
-        .each(function(d) {
-        d4.select(this).call(y[d].brush = d4.svg.brush().y(y[d]).on("brushstart", brushstart).on("brush", brush));
+        .each(function (d) {
+            d4.select(this).call(y[d].brush = d4.svg.brush().y(y[d]).on("brushstart", brushstart).on("brush", brush));
         })
         .selectAll("rect")
         .attr("x", -8)
         .attr("width", 16);
-
-    year_data.forEach(function (d) {
-        var land = d["country"];
-        var id = "#" + land;
-
-        //add hover event
-        var tip = d4.select("#graph")
-            .append("div")
-            .attr("class", "tip")
-            .style("position", "absolute")
-            .style("visibility", "hidden")
-            .html(land);
-
-        d4.select(this).on("mouseover", function(){
-            console.log("hey")
-        });
-
-        // show tooltip if hover
-        d4.select(id).on("mouseover", function () {
-            console.log(id)
-            return tip.style("visibility", "visible");
-        })
-            .on("mousemove", function () {
-                return tip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px");
-            })
-            .on("mouseout", function () {
-                return tip.style("visibility", "hidden");
-            });
-        });
-
-    // d4.select(this)
-	// .on("mousemove", function() {
-	//     var mousePosition = d3.mouse(this);
-	//     highlightLineOnClick(mousePosition, true); //true will also add tooltip
-	// })
-	// .on("mouseout", function(){
-	// 	cleanTooltip();
-	// 	graph.unhighlight();
-	// });
-
-    // Define the div for the tooltip
-    //
-    //
-
-
-
-
 
     function position(d) {
         var v = dragging[d];
