@@ -15,7 +15,6 @@ var years = "2012";
 var variable = "Life Ladder";
 var happydata;
 
-
 // global function: get year from slider
 function give_year (year) {
 	fillDataInGraph(year, variable);
@@ -70,7 +69,7 @@ window.onload = function() {
 		add_graph(years);
 
 		// add scatter plot
-		scatter(years);
+		scatter();
 	});
 
 	// change map when button clicked
@@ -79,12 +78,8 @@ window.onload = function() {
 		fillDataInGraph(years, variable);
 	});
 
-    // click event: haal country eruit, geef mee aan nieuwe functie (console log)
-    // country aan nieuwe functie: selecter lijn in #graph
-    // d3.select(){
-
-    // }
-
-
-
+    // update scatterplot if checkbox (un)checked
+	d3.selectAll(".n").on("change", function(){
+		scatter();
+	});
 };

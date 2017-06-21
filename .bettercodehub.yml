@@ -1,0 +1,6 @@
+exclude:
+- /Code/JS/d3-legend.js
+component_depth: 1
+languages:
+- javascript
+- python

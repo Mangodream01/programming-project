@@ -5,9 +5,9 @@ function add_graph(years) {
     d4.select('#graph').remove();
 
     // margins
-    var margin = {top: 30, right: 10, bottom: 10, left: 10},
+    var margin = {top: 100, right: 100, bottom: 10, left: 10},
         width = 1300 - margin.left - margin.right,
-        height = 300 - margin.top - margin.bottom;
+        height = 350 - margin.top - margin.bottom;
 
     // x, y, dragging
     var x = d4.scale.ordinal().rangePoints([0, width], 1),
@@ -20,13 +20,18 @@ function add_graph(years) {
         background,
         foreground;
 
+    // subtitle
+    d4.select("#graph_div")
+        .text("Happiness variables from European countries in " + years)
+        .style("font-style","italic");
+
     // define svg
     var svg = d4.select("#graph_div").append("svg")
         .attr("id", "graph")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 
     // select data per year
     var year_data = [];
@@ -45,6 +50,14 @@ function add_graph(years) {
                 .range([height, 0]));
     }));
 
+    //add tooltip parallel coordinates
+    var tip = d4.select("#graph_div")
+        .append("div")
+        .attr("class", "tooltipje")
+        .style("position", "absolute")
+        .style("visibility", "hidden")
+        .html("hey");
+
     // Add grey background lines for context.
     background = svg.append("g")
         .attr("class", "background")
@@ -55,7 +68,13 @@ function add_graph(years) {
         .attr("id", function (d, i) {
             result = year_data[i]["country"];
             return result;
-        });
+        })
+        .on("mouseover", function () {
+				return tip.style("visibility", "visible");})
+        .on("mousemove", function () {
+            return tip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px");})
+        .on("mouseout", function () {
+            return tip.style("visibility", "hidden");});
 
     // Add blue foreground lines for focus.
     foreground = svg.append("g")
@@ -64,10 +83,19 @@ function add_graph(years) {
         .data(year_data)
         .enter().append("path")
         .attr("d", path)
+        .attr("title", function (d, i) {
+            result = year_data[i]["country"];
+            return result;})
         .attr("id", function (d, i) {
             result = year_data[i]["country"];
             return result;
-        });
+        })
+        .on("mouseover", function () {
+				return tip.style("visibility", "visible");})
+        .on("mousemove", function () {
+            return tip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px");})
+        .on("mouseout", function () {
+            return tip.style("visibility", "hidden");});
 
     // Add a group element for each dimension.
     var g = svg.selectAll(".dimension")
@@ -115,11 +143,12 @@ function add_graph(years) {
             d4.select(this).call(axis.scale(y[d]));
         })
         .append("text")
-        .style("text-anchor", "middle")
+        .style("text-anchor", "left")
         .attr("y", -9)
         .text(function (d) {
             return d;
-        });
+        })
+        .attr("transform", "rotate(-30)");
 
     // Add and store a brush for each axis.
     g.append("g")

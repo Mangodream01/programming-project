@@ -72,8 +72,21 @@
         <br><br>
         <h3>Scatter plot</h3>
         <br>
-        <div id="scatter"></div>
-        <input type="button" name="xAxis" value="xAxis">
+        <div id="checkboxes">
+            <form action="">
+            <input type="checkbox" id="y2006" class="n" value="2006"> 2006 &nbsp &nbsp
+            <input type="checkbox" id="y2007" class="n" value="2007"> 2007 &nbsp &nbsp
+            <input type="checkbox" id="y2008" class="n" value="2008"> 2008 &nbsp &nbsp
+            <input type="checkbox" id="y2009" class="n" value="2009"> 2009 &nbsp &nbsp
+            <input type="checkbox" id="y2010" class="n" value="2010"> 2010 &nbsp &nbsp
+            <input type="checkbox" id="y2011" class="n" value="2011"> 2011 &nbsp &nbsp
+            <input checked="checked" type="checkbox" class="n" id="y2012" value="2012"> 2012 &nbsp &nbsp
+            <input checked="checked" type="checkbox" class="n" id="y2013" value="2013"> 2013 &nbsp &nbsp
+            <input checked="checked" type="checkbox" class="n" id="y2014" value="2014"> 2014 &nbsp &nbsp
+            <input type="checkbox" id="y2015" class="n" value="2015"> 2015
+            </form>
+        </div>
+        <div id="scatter_div"></div>
 
 
         <footer class="container-fluid text-center">
@@ -83,6 +96,7 @@
         <script src="Code/JS/fillDataInGraph.js"></script>
         <script src="Code/JS/time_slider.js"></script>
         <script src="Code/JS/parallelcoordinates.js"></script>
+        <script src="Code/JS/checkboxes.js"></script>
         <script src="Code/JS/scatter.js" charset="utf-8"></script>
         <script src="Code/JS/drug_world.js"></script>
     </body>

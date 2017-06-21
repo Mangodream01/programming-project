@@ -97,40 +97,17 @@ function fillDataInGraph(year, variable) {
 
 			// show tooltip if hover
 			d3.select(curCountry).on("mouseover", function () {
-				return tooltip.style("visibility", "visible");
-			})
+				return tooltip.style("visibility", "visible");})
 				.on("mousemove", function () {
-					return tooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px");
-				})
+					return tooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px");})
 				.on("mouseout", function () {
-					return tooltip.style("visibility", "hidden");
-				});
+					return tooltip.style("visibility", "hidden");});
 
-			//add hover event
-			var tip = d4.select("path")
-				.append("div")
-				.attr("class", "tip")
-				.style("position", "absolute")
-				.style("visibility", "hidden")
-				.html(curCountry);
-
-			var id = "#" + data[year][country]["Country"];
-			// show tooltip if hover
-			d4.select(id).on("mouseover", function () {
-				return tip.style("visibility", "visible");
-			})
-				.on("mousemove", function () {
-					return tip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px");
-				})
-				.on("mouseout", function () {
-					return tip.style("visibility", "hidden");
-				});
-
+			// select line in graph
+			var country_name = "#" + data[year][country]["Country"];
 
 			// select line parallel coordinates when country clicked
 			d4.select(curCountry).on("click", function(){
-				var country_name = "#" + data[year][country]["Country"];
-
 				d4.select(country_name)
 					.style("stroke", "#92B558")
 					.style("stroke-width", "4")
