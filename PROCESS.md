@@ -32,4 +32,15 @@ Today I linked the parallel coordinates to the time slider. Now, it updates with
 ##### 19-06-2017 
 Today I made a start with my third visualization: a scatter plot. I also refined the parallel coordinates, and linked it to my EU map. 
 
+##### 20-06-2017 
+Event in Rotterdam. Thought about my third visualisation and tried to fill the tooltip of parallel coordinates with the right data.
+
+##### 21-06-2017 
+Did not manage to fill tooltip of parallel coordinates with the right data. I made checkboxes to check the years in the scatter plot, and it works good. However, I would prefer an update function instead of removing and creating the whole visualization with every small change. This is also true for the parallel coordinates.
+
+##### 22-06-2017 
+Tooltip content in parallel coordinates is right. I made dropdown menus to pick variables for the scatterplot. I made a tab menu to switch between parallel coordinates and scatter plot.I wrote a function to update parallel coordinates, with transition() and everything. Now, I am busy to successful select and unselect lines in parallel coordinates by hovering and clicking on the EU map. I also added some dynamically changing titles and other small changes in style.
+
+##### 23-06-2017
+
 

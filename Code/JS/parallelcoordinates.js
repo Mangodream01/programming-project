@@ -1,13 +1,15 @@
+var pathFunction;
+
 
 // add parallel coordinates
 function add_graph(years) {
 
-    d4.select('#graph').remove();
+    // d4.select('#graph').remove();
 
     // margins
-    var margin = {top: 100, right: 100, bottom: 10, left: 10},
-        width = 1300 - margin.left - margin.right,
-        height = 350 - margin.top - margin.bottom;
+    var margin = {top: 100, right: 100, bottom: 50, left: 10},
+        width = 1300 - margin.left - margin.right, // 1190
+        height = 400 - margin.top - margin.bottom;
 
     // x, y, dragging
     var x = d4.scale.ordinal().rangePoints([0, width], 1),
@@ -31,7 +33,7 @@ function add_graph(years) {
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     // select data per year
     var year_data = [];
@@ -55,8 +57,7 @@ function add_graph(years) {
         .append("div")
         .attr("class", "tooltipje")
         .style("position", "absolute")
-        .style("visibility", "hidden")
-        .html("hey");
+        .style("visibility", "hidden");
 
     // Add grey background lines for context.
     background = svg.append("g")
@@ -69,7 +70,8 @@ function add_graph(years) {
             result = year_data[i]["country"];
             return result;
         })
-        .on("mouseover", function () {
+        .on("mouseover", function (d) {
+                tip.html(d["country"]);
 				return tip.style("visibility", "visible");})
         .on("mousemove", function () {
             return tip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px");})
@@ -90,7 +92,8 @@ function add_graph(years) {
             result = year_data[i]["country"];
             return result;
         })
-        .on("mouseover", function () {
+        .on("mouseover", function (d) {
+                tip.html(d["country"]);
 				return tip.style("visibility", "visible");})
         .on("mousemove", function () {
             return tip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px");})
@@ -160,6 +163,7 @@ function add_graph(years) {
         .attr("x", -8)
         .attr("width", 16);
 
+
     function position(d) {
         var v = dragging[d];
         return v == null ? x(d) : v;
@@ -173,6 +177,8 @@ function add_graph(years) {
     function path(d) {
         return line(dimensions.map(function(p) { return [position(p), y[p](d[p])]; }));
     }
+
+    pathFunction = path;
 
     function brushstart() {
     d4.event.sourceEvent.stopPropagation();
@@ -193,3 +199,39 @@ function add_graph(years) {
         });
     }
 }
+
+
+
+
+// update parallel coordinates
+function update_graph(years) {
+
+    // select data per year
+    var year_data = [];
+    Object.values(happydata).forEach(function (d) {
+        if (d["year"] == years) {
+            year_data.push(d);
+        }
+    });
+
+    var update_1 = d3.select("#graph")
+        .select("g.foreground")
+        .selectAll("path")
+        .data(year_data);
+    var update_2 = d3.select("#graph")
+        .select("g.background")
+        .selectAll("path")
+        .data(year_data);
+
+    var enter_1 = update_1.enter()
+        .append("path");
+    var enter_2 = update_2.enter()
+        .append("path");
+
+    update_1.merge(enter_1).transition().duration(750).attr("d", pathFunction);
+    update_2.merge(enter_2).transition().duration(750).attr("d", pathFunction);
+
+
+}
+
+

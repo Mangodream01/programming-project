@@ -41,7 +41,11 @@
 			</ul>
 		</div>
         </nav>
-        <h3>Happiness in Europe (2006-2015)</h3>
+        <div id="title">
+            <h3>Happiness in Europe (2006-2015)</h3>
+        </div>
+
+
         <div class="flexcontainer">
             <div id="container" ></div>
             <!--List-->
@@ -62,31 +66,75 @@
                 </ul>
             </div>
         </div>
-        <br><br>
-        <hr>
-        <br><br>
-        <h3>Parallel coordinates</h3>
-        <div id="graph_div"></div>
-        <br><br>
-        <hr>
-        <br><br>
-        <h3>Scatter plot</h3>
-        <br>
-        <div id="checkboxes">
-            <form action="">
-            <input type="checkbox" id="y2006" class="n" value="2006"> 2006 &nbsp &nbsp
-            <input type="checkbox" id="y2007" class="n" value="2007"> 2007 &nbsp &nbsp
-            <input type="checkbox" id="y2008" class="n" value="2008"> 2008 &nbsp &nbsp
-            <input type="checkbox" id="y2009" class="n" value="2009"> 2009 &nbsp &nbsp
-            <input type="checkbox" id="y2010" class="n" value="2010"> 2010 &nbsp &nbsp
-            <input type="checkbox" id="y2011" class="n" value="2011"> 2011 &nbsp &nbsp
-            <input checked="checked" type="checkbox" class="n" id="y2012" value="2012"> 2012 &nbsp &nbsp
-            <input checked="checked" type="checkbox" class="n" id="y2013" value="2013"> 2013 &nbsp &nbsp
-            <input checked="checked" type="checkbox" class="n" id="y2014" value="2014"> 2014 &nbsp &nbsp
-            <input type="checkbox" id="y2015" class="n" value="2015"> 2015
-            </form>
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#menu1">Parallel coordinates</a></li>
+            <li><a data-toggle="tab" href="#menu2">Scatter plot</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="menu1" class="tab-pane fade in active">
+                <h3>Parallel coordinates</h3>
+                <div id="graph_div"></div>
+            </div>
+
+
+            <div id="menu2" class="tab-pane fade">
+                <h3>Scatter plot</h3>
+                <div id="wrapper">
+
+                    <!--dropdown X var-->
+                    <div class="dropdown" id="xvar">
+                        <button class="dropbtn">X Var</button>
+                        <div class="dropdown-content">
+                            <a class="d" value="Life Ladder" href="#">Life Ladder</a>
+                            <a class="d" value="Log GDP per capita" href="#">Log GDP per capita</a>
+                            <a class="d" value="Social support" href="#">Social support</a>
+                            <a class="d" value="Healthy life expectancy at birth" href="#">Healthy life expectancy at birth</a>
+                            <a class="d" value="Freedom to make life choices" href="#">Freedom to make life choices</a>
+                            <a class="d" value="Generosity" href="#">Generosity</a>
+                            <a class="d" value="Perceptions of corruption" href="#">Perceptions of corruption</a>
+                            <a class="d" value="Positive affect" href="#">Positive affect</a>
+                            <a class="d" value="Negative affect" href="#">Negative affect</a>
+                            <a class="d" value="Confidence in national government" href="#">Confidence in national government</a>
+                            <a class="d" value="Democratic Quality" href="#">Democratic Quality</a>
+                        </div>
+                    </div>
+
+                    <!--dropdown Y var-->
+                    <div class="dropdown" id="yvar">
+                        <button class="dropbtn">Y Var</button>
+                        <div class="dropdown-content">
+                            <a class="e" value="Life Ladder" href="#">Life Ladder</a>
+                            <a class="e" value="Log GDP per capita" href="#">Log GDP per capita</a>
+                            <a class="e" value="Social support" href="#">Social support</a>
+                            <a class="e" value="Healthy life expectancy at birth" href="#">Healthy life expectancy at birth</a>
+                            <a class="e" value="Freedom to make life choices" href="#">Freedom to make life choices</a>
+                            <a class="e" value="Generosity" href="#">Generosity</a>
+                            <a class="e" value="Perceptions of corruption" href="#">Perceptions of corruption</a>
+                            <a class="e" value="Positive affect" href="#">Positive affect</a>
+                            <a class="e" value="Negative affect" href="#">Negative affect</a>
+                            <a class="e" value="Confidence in national government" href="#">Confidence in national government</a>
+                            <a class="e" value="Democratic Quality" href="#">Democratic Quality</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="checkboxes">
+                    <form action="">
+                    <input type="checkbox" id="y2006" class="n" value="2006"> 2006 &nbsp &nbsp
+                    <input type="checkbox" id="y2007" class="n" value="2007"> 2007 &nbsp &nbsp
+                    <input type="checkbox" id="y2008" class="n" value="2008"> 2008 &nbsp &nbsp
+                    <input type="checkbox" id="y2009" class="n" value="2009"> 2009 &nbsp &nbsp
+                    <input type="checkbox" id="y2010" class="n" value="2010"> 2010 &nbsp &nbsp
+                    <input type="checkbox" id="y2011" class="n" value="2011"> 2011 &nbsp &nbsp
+                    <input checked="checked" type="checkbox" class="n" id="y2012" value="2012"> 2012 &nbsp &nbsp
+                    <input checked="checked" type="checkbox" class="n" id="y2013" value="2013"> 2013 &nbsp &nbsp
+                    <input checked="checked" type="checkbox" class="n" id="y2014" value="2014"> 2014 &nbsp &nbsp
+                    <input type="checkbox" id="y2015" class="n" value="2015"> 2015
+                    </form>
+                </div>
+                <div id="scatter_div"></div>
+            </div>
         </div>
-        <div id="scatter_div"></div>
 
 
         <footer class="container-fluid text-center">

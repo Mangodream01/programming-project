@@ -1,13 +1,13 @@
 
-function scatter() {
+function scatter(var1, var2) {
 
     d3.select("#scatter").remove();
     d3.select("#scatter_div").append("div").attr("id", "scatter");
 
     // set margins
-    var margin = {top: 50, right: 300, bottom: 50, left: 50},
-        outerWidth = 1050,
-        outerHeight = 500,
+    var margin = {top: 20, right: 100, bottom: 80, left: 50},
+        outerWidth = 800,
+        outerHeight = 370,
         width = outerWidth - margin.left - margin.right,
         height = outerHeight - margin.top - margin.bottom;
 
@@ -18,10 +18,10 @@ function scatter() {
         .range([height, 0]).nice();
 
     // set categories
-    var xCat = "Positive affect",
-        yCat = "Negative affect",
-        rCat = "country",
+    var xCat = var1,
+        yCat = var2,
         colorCat = "year";
+
 
     // select data per year
     var year_data = [];
@@ -36,9 +36,11 @@ function scatter() {
 
     // select data
     year_data.forEach(function (d) {
-        d["Positive affect"] = +d["Positive affect"];
-        d["Negative affect"] = +d["Negative affect"]
+        d[var1] = +d[var1];
+        d[var2] = +d[var2]
     });
+
+
 
     var xMax = d4.max(year_data, function(d) {
         return d[xCat];
@@ -146,9 +148,9 @@ function scatter() {
         .classed("dot", true)
         .attr("r",  5)
         .attr("transform", transform)
-        .style("fill", function(d) { return color(d[colorCat]); })
-        .on("mouseover", tip.show)
-        .on("mouseout", tip.hide);
+        .style("fill", function(d) { return color(d[colorCat]); });
+        // .on("mouseover", tip.show)
+        // .on("mouseout", tip.hide);
 
     var legend = svg.selectAll(".legend")
         .data(color.domain())
@@ -191,3 +193,24 @@ function scatter() {
         return "translate(" + x(d[xCat]) + "," + y(d[yCat]) + ")";
     }
 }
+
+
+
+
+// function update_scatter(var1, var2){
+//
+//     d3.select(#scatter)
+//
+// }
+
+
+
+
+
+
+
+
+
+
+
+
