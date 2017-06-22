@@ -146,9 +146,13 @@ function scatter(var1, var2) {
         .data(year_data)
         .enter().append("circle")
         .classed("dot", true)
+        .attr("id", function(d){
+            return d["country"] + "_" + d["year"];
+        })
         .attr("r",  5)
         .attr("transform", transform)
-        .style("fill", function(d) { return color(d[colorCat]); });
+        .style("fill", function(d) {
+            return color(d[colorCat]); });
         // .on("mouseover", tip.show)
         // .on("mouseout", tip.hide);
 
@@ -193,8 +197,6 @@ function scatter(var1, var2) {
         return "translate(" + x(d[xCat]) + "," + y(d[yCat]) + ")";
     }
 }
-
-
 
 
 // function update_scatter(var1, var2){

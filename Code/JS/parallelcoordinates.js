@@ -228,9 +228,8 @@ function update_graph(years) {
     var enter_2 = update_2.enter()
         .append("path");
 
-    update_1.merge(enter_1).transition().duration(750).attr("d", pathFunction);
-    update_2.merge(enter_2).transition().duration(750).attr("d", pathFunction);
-
+    update_1.merge(enter_1).transition().duration(1000).attr("d", pathFunction);
+    update_2.merge(enter_2).transition().duration(1000).attr("d", pathFunction);
 
 }
 

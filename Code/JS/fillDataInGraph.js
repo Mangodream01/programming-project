@@ -63,12 +63,12 @@ function fillDataInGraph(year, variable) {
 
 		var svg = d3.select("svg");
 
-		// if (d3.select("#test" == [])) {
-		// 	d3.select("#test").remove();
-		// }
+		if (d3.select("#leg" == [])) {
+			d3.select("#leg").remove();
+		}
 
 		svg.append("g")
-			.attr("id", "test")
+			.attr("id", "leg")
 			.attr("class", "legendLinear")
 			.attr("transform", "translate(0,295)");
 
@@ -90,9 +90,10 @@ function fillDataInGraph(year, variable) {
 			var score = +data[year][country][variable];
 			var curCountry = "#" + country;
 			var country_name = "#" + data[year][country]["Country"];
+			var dot_name = country_name + "_" + year;
+			var color = linear(score);
 
 			// fill country
-			var color = linear(score);
 			d3.select(curCountry).attr("fill", color);
 
 			// Define the div for the tooltip
@@ -112,20 +113,26 @@ function fillDataInGraph(year, variable) {
 					if (arr.length < 1){
 						arr.push(country_name);
 					}
+
 					else{
 						// check if country in array
 						arr.forEach(function(d) {
-							if (country_name == d){
-								// yes, push off array
-								arr.splice(country_name);
+							if (country_name != d){
+								// no, push country on array
+								arr.push(country_name);
 							}
 							else {
-								// no, push on array
-								arr.push(country_name);
+								// yes, push country off array
+								console.log(arr);
+								arr.splice(country_name);
+								console.log(arr);
+
+
+								// var index = arr.indexOf(d);
+								// arr.splice(index);
 							}
 						})
 					}
-					console.log(arr);
 				})
 				.on("mouseover", function () {
 					// select line
@@ -133,6 +140,9 @@ function fillDataInGraph(year, variable) {
 						.style("stroke", "#DC4C46")
 						.style("stroke-width", "4")
 						.style("fill-opacity", 0.8);
+					d3.select(dot_name)
+						.style("fill-opacity", 1)
+						.style("fill", "black");
 					// show tooltip
 					return tooltip.style("visibility", "visible");
 				})
@@ -158,40 +168,8 @@ function fillDataInGraph(year, variable) {
 					}
 					return tooltip.style("visibility", "hidden");
 				});
-
-
-
-
-			// // select line parallel coordinates when country clicked
-			// d3.select(curCountry)
-			// 	.on("click", function () {
-			// 		if (arr.length < 1){
-			// 			arr.push(country_name);
-			// 		}
-			// 		else{
-			// 			// check if country in array
-			// 			arr.forEach(function(d) {
-			// 				if (country_name == d){
-			// 					// yes, push off array
-			// 					arr.splice(country_name);
-			// 				}
-			// 				else {
-			// 					// no, push on array
-			// 					arr.push(country_name);
-			// 				}
-			// 			})
-			// 		}
-			// 	});
-				// .on('mouseout', function () {
-				//
-				// });
-				// .on('mouseover', function () {
-				// 	d3.select(country_name)
-				// 		.style("stroke", "#DC4C46")
-				// 		.style("stroke-width", "4")
-				// 		.style("fill-opacity", 0.8)
-				// });
 		})
 	})
 }
+
 
