@@ -61,8 +61,9 @@ function insert_slider() {
         .attr("class", "handle")
         .attr("r", 9);
 
-    slider.transition() // Gratuitous intro!
-        .duration(750)
+    // gratuitous intro!
+    slider.transition()
+        .duration(800)
         .tween("hue", function () {
             var i = d3.interpolate(0, 2012);
             return function (t) {

@@ -1,8 +1,7 @@
 
 function scatter(var1, var2) {
 
-    d3.select("#scatter").remove();
-    d3.select("#scatter_div").append("div").attr("id", "scatter");
+    d4.select("#scatter").remove();
 
     // set margins
     var margin = {top: 20, right: 100, bottom: 80, left: 50},
@@ -22,7 +21,6 @@ function scatter(var1, var2) {
         yCat = var2,
         colorCat = "year";
 
-
     // select data per year
     var year_data = [];
     var checked_years = checkbox();
@@ -40,8 +38,6 @@ function scatter(var1, var2) {
         d[var2] = +d[var2]
     });
 
-
-
     var xMax = d4.max(year_data, function(d) {
         return d[xCat];
     }) * 1.05,
@@ -53,10 +49,10 @@ function scatter(var1, var2) {
             function(d) {
             return d[yCat];
         }) * 1.05,
-            yMin = d4.min(year_data, function(d) {
+        yMin = d4.min(year_data, function(d) {
                 return d[yCat];
-            }),
-                yMin = yMin > 0 ? 0 : yMin;
+        }),
+        yMin = yMin > 0 ? 0 : yMin;
 
     x.domain([xMin, xMax]);
     y.domain([yMin, yMax]);
@@ -73,7 +69,8 @@ function scatter(var1, var2) {
 
     var color = d4.scale.category10();
 
-    var tip = d4.tip()
+    // create tooltip
+    var tip = d3.tip()
         .attr("class", "d3-tip")
         .offset([-10, 0])
         .html(function(d) {
@@ -86,15 +83,16 @@ function scatter(var1, var2) {
         .scaleExtent([0, 500])
         .on("zoom", zoom);
 
-    var svg = d4.select("#scatter")
+    var svg = d4.select("#scatter_div")
         .append("svg")
+        .attr("id", "scatter")
         .attr("width", outerWidth)
         .attr("height", outerHeight)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
         .call(zoomBeh);
 
-    // svg.call(tip);
+    svg.call(tip);
 
     svg.append("rect")
         .attr("width", width)
@@ -172,23 +170,57 @@ function scatter(var1, var2) {
         .attr("dy", ".35em")
         .text(function(d) { return d; });
 
-    d4.select("input").on("click", change);
+	// give X to scatter function
+	d4.selectAll(".d").on("click", function () {
+		var1 = this.getAttribute("value");
+		update_scatter(var1, var2);
+	});
 
-    function change() {
-        xCat = "Confidence in national government";
-        xMax = d4.max(data, function(d) { return d[xCat]; });
-        xMin = d4.min(data, function(d) { return d[xCat]; });
+	// give Y to scatter function
+	d4.selectAll(".e").on("click", function () {
+		var2 = this.getAttribute("value");
+		update_scatter(var1, var2);
+	});
+
+
+    function update_scatter(var1, var2) {
+        xCat = var1;
+        yCat = var2;
+        xMax = d4.max(year_data, function(d) { return d[xCat]; });
+        xMin = d4.min(year_data, function(d) { return d[xCat]; });
+        yMax = d4.max(year_data, function(d) { return d[yCat]; });
+        yMin = d4.min(year_data, function(d) { return d[yCat]; });
+
+        var xMax = d4.max(year_data, function(d) {
+        return d[xCat];
+        }) * 1.05,
+        xMin = d4.min(year_data, function(d) {
+            return d[xCat];
+        }),
+        xMin = xMin > 0 ? 0 : xMin,
+        yMax = d4.max(year_data,
+            function(d) {
+            return d[yCat];
+        }) * 1.05,
+        yMin = d4.min(year_data, function(d) {
+                return d[yCat];
+        }),
+        yMin = yMin > 0 ? 0 : yMin;
+
+        x.domain([xMin, xMax]);
+        y.domain([yMin, yMax]);
 
         zoomBeh.x(x.domain([xMin, xMax])).y(y.domain([yMin, yMax]));
+        zoomBeh.y(y.domain([yMin, yMax])).x(x.domain([xMin, xMax]));
         var svg = d4.select("#scatter").transition();
         svg.select(".x.axis").duration(750).call(xAxis).select(".label").text(xCat);
+        svg.select(".y.axis").duration(750).call(yAxis).select(".label").text(yCat);
         objects.selectAll(".dot").transition().duration(1000).attr("transform", transform);
     }
 
     function zoom() {
         svg.select(".x.axis").call(xAxis);
         svg.select(".y.axis").call(yAxis);
-
         svg.selectAll(".dot")
         .attr("transform", transform);
     }
@@ -197,20 +229,6 @@ function scatter(var1, var2) {
         return "translate(" + x(d[xCat]) + "," + y(d[yCat]) + ")";
     }
 }
-
-
-// function update_scatter(var1, var2){
-//
-//     d3.select(#scatter)
-//
-// }
-
-
-
-
-
-
-
 
 
 

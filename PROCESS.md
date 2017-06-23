@@ -42,5 +42,5 @@ Did not manage to fill tooltip of parallel coordinates with the right data. I ma
 Tooltip content in parallel coordinates is right. I made dropdown menus to pick variables for the scatterplot. I made a tab menu to switch between parallel coordinates and scatter plot.I wrote a function to update parallel coordinates, with transition() and everything. Now, I am busy to successful select and unselect lines in parallel coordinates by hovering and clicking on the EU map. I also added some dynamically changing titles and other small changes in style.
 
 ##### 23-06-2017
-
+I wrote an update function for my new scatter plot. The screen keeps going up whenever I pick another variable, so it is tiring to improve it. My parallel coordinates become prettier and prettier, but I can’t seem to think of a way to keep a line highlighted when clicked upon. 
 

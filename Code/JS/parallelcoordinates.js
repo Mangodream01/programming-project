@@ -85,9 +85,6 @@ function add_graph(years) {
         .data(year_data)
         .enter().append("path")
         .attr("d", path)
-        .attr("title", function (d, i) {
-            result = year_data[i]["country"];
-            return result;})
         .attr("id", function (d, i) {
             result = year_data[i]["country"];
             return result;
@@ -170,7 +167,7 @@ function add_graph(years) {
     }
 
     function transition(g) {
-        return g.transition().duration(500);
+        return g.transition().duration(800);
     }
 
     // Returns the path for a given data point.
@@ -200,20 +197,21 @@ function add_graph(years) {
     }
 }
 
-
-
-
 // update parallel coordinates
 function update_graph(years) {
 
     // select data per year
     var year_data = [];
+    var id = [];
+
     Object.values(happydata).forEach(function (d) {
         if (d["year"] == years) {
             year_data.push(d);
+            id.push(d["country"]);
         }
     });
 
+    // select lines
     var update_1 = d3.select("#graph")
         .select("g.foreground")
         .selectAll("path")
@@ -223,13 +221,14 @@ function update_graph(years) {
         .selectAll("path")
         .data(year_data);
 
+    // append paths
     var enter_1 = update_1.enter()
         .append("path");
     var enter_2 = update_2.enter()
         .append("path");
 
-    update_1.merge(enter_1).transition().duration(1000).attr("d", pathFunction);
-    update_2.merge(enter_2).transition().duration(1000).attr("d", pathFunction);
+    update_1.merge(enter_1).transition().duration(800).attr("d", pathFunction);
+    update_2.merge(enter_2).transition().duration(800).attr("d", pathFunction);
 
 }
 

@@ -17,7 +17,6 @@ var happydata;
 var var1 = "Life Ladder";
 var var2 = "Log GDP per capita";
 
-
 // global function: get year from slider
 function give_year (year) {
 	fillDataInGraph(year, variable);
@@ -28,8 +27,8 @@ function give_year (year) {
 window.onload = function() {
 
 	// width and height
-	var w = 600;
-	var h = 450;
+	var w = 600; // 400
+	var h = 450; // 300
 
 	// define map projection
 	var projection = d3.geo.mercator()
@@ -82,33 +81,8 @@ window.onload = function() {
 		fillDataInGraph(years, variable);
 	});
 
-    // update scatterplot if checkbox (un)checked
-	d3.selectAll(".n").on("change", function(){
+	// update scatterplot if checkbox (un)checked
+	d4.selectAll(".n").on("change", function(){
 		scatter(var1, var2);
 	});
-
-	// give X to scatter function
-	d3.selectAll(".d").on("click", function () {
-		var1 = this.getAttribute("value");
-		scatter(var1, var2);
-	});
-
-	// give Y to scatter function
-	d3.selectAll(".e").on("click", function () {
-		var2 = this.getAttribute("value");
-		scatter(var1, var2);
-	});
-
-
-
-
-
-		// var data_map = this.getAttribute("value");
-    // add_legend(data_map);
-    // // Get the data
-    // d3.json("./file" + data_map + ".json", function (error, data) {
-    //     map.updateChoropleth(data)
-    // })
-    // });
-
 };

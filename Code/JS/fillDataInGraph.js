@@ -1,4 +1,4 @@
-// function 1 fill data in graph
+// fill data in graph
 function fillDataInGraph(year, variable) {
 	d3.json("Code/PY and files/file.json", function (error, data) {
 		if (error) throw error;
@@ -82,7 +82,14 @@ function fillDataInGraph(year, variable) {
 		svg.select(".legendLinear")
 			.call(legendLinear);
 
+
+		// empty array
 		var arr = [];
+
+		// function: is object in array
+		function include(arr,obj) {
+			return (arr.indexOf(obj) != -1);
+		}
 
 		// loop over specific year by slider
 		Object.keys(data[year]).forEach(function (country) {
@@ -109,40 +116,35 @@ function fillDataInGraph(year, variable) {
 
 			// hover events: tooltip and parallel coordinates
 			d3.select(curCountry)
-				.on("click", function () {
+				/*.on("click", function () {
 					if (arr.length < 1){
-						arr.push(country_name);
+						arr.push(curCountry);
 					}
-
 					else{
-						// check if country in array
-						arr.forEach(function(d) {
-							if (country_name != d){
-								// no, push country on array
-								arr.push(country_name);
-							}
-							else {
-								// yes, push country off array
-								console.log(arr);
-								arr.splice(country_name);
-								console.log(arr);
+						// push country off array
+						if (include(arr, curCountry)){
+							var index = arr.indexOf(curCountry);
+							arr.splice(index, 1);
+						}
 
-
-								// var index = arr.indexOf(d);
-								// arr.splice(index);
-							}
-						})
+						else {
+							// push country on array
+							arr.push(curCountry);
+						}
 					}
-				})
+				})*/
 				.on("mouseover", function () {
 					// select line
 					d3.select(country_name)
-						.style("stroke", "#DC4C46")
-						.style("stroke-width", "4")
+						.style("stroke", "#586674")
+						.style("stroke-width", "2")
 						.style("fill-opacity", 0.8);
-					d3.select(dot_name)
-						.style("fill-opacity", 1)
-						.style("fill", "black");
+
+					// // select dot
+					// d3.select(dot_name)
+					// 	.style("fill-opacity", 1)
+					// 	.style("fill", "black");
+
 					// show tooltip
 					return tooltip.style("visibility", "visible");
 				})
@@ -150,21 +152,22 @@ function fillDataInGraph(year, variable) {
 					return tooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px");
 				})
 				.on("mouseout", function () {
+
 					if (arr.length < 1) {
+						// change back
 						d3.select(country_name)
-							.style("stroke", "#778899")
+							.style("stroke", "#b6bfc8")
 							.style("stroke-width", "1")
 							.style("fill", "none")
 					}
 					else {
-						arr.forEach(function (d) {
-							if (country_name != d) {
-								d3.select(country_name)
-									.style("stroke", "#778899")
+						if (include(arr, curCountry)){
+							// change back
+							d3.select(country_name)
+									.style("stroke", "#b6bfc8")
 									.style("stroke-width", "1")
 									.style("fill", "none")
-							}
-						})
+						}
 					}
 					return tooltip.style("visibility", "hidden");
 				});
