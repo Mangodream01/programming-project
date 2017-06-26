@@ -82,7 +82,6 @@ function fillDataInGraph(year, variable) {
 		svg.select(".legendLinear")
 			.call(legendLinear);
 
-
 		// empty array
 		var arr = [];
 
@@ -116,15 +115,19 @@ function fillDataInGraph(year, variable) {
 
 			// hover events: tooltip and parallel coordinates
 			d3.select(curCountry)
-				/*.on("click", function () {
+				.on("click", function () {
+
+					// select line in parallel coordinates
 					if (arr.length < 1){
 						arr.push(curCountry);
+						select_line(country_name);
 					}
 					else{
 						// push country off array
 						if (include(arr, curCountry)){
 							var index = arr.indexOf(curCountry);
 							arr.splice(index, 1);
+							unselect_line(country_name);
 						}
 
 						else {
@@ -132,18 +135,13 @@ function fillDataInGraph(year, variable) {
 							arr.push(curCountry);
 						}
 					}
-				})*/
-				.on("mouseover", function () {
-					// select line
-					d3.select(country_name)
-						.style("stroke", "#586674")
-						.style("stroke-width", "2")
-						.style("fill-opacity", 0.8);
 
-					// // select dot
-					// d3.select(dot_name)
-					// 	.style("fill-opacity", 1)
-					// 	.style("fill", "black");
+					// select dot in scatter plot
+					d3.select(dot_name)
+						.style("fill-opacity", 1)
+						.style("fill", "black");
+				})
+				.on("mouseover", function () {
 
 					// show tooltip
 					return tooltip.style("visibility", "visible");
@@ -152,23 +150,6 @@ function fillDataInGraph(year, variable) {
 					return tooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px");
 				})
 				.on("mouseout", function () {
-
-					if (arr.length < 1) {
-						// change back
-						d3.select(country_name)
-							.style("stroke", "#b6bfc8")
-							.style("stroke-width", "1")
-							.style("fill", "none")
-					}
-					else {
-						if (include(arr, curCountry)){
-							// change back
-							d3.select(country_name)
-									.style("stroke", "#b6bfc8")
-									.style("stroke-width", "1")
-									.style("fill", "none")
-						}
-					}
 					return tooltip.style("visibility", "hidden");
 				});
 		})

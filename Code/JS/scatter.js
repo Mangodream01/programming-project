@@ -21,35 +21,25 @@ function scatter(var1, var2) {
         yCat = var2,
         colorCat = "year";
 
-    // select data per year
-    var year_data = [];
-    var checked_years = checkbox();
-    checked_years.forEach(function(checked_year){
-        Object.values(happydata).forEach(function (d) {
-            if (d["year"] == checked_year) {
-                year_data.push(d);
-            }
-        });
-    });
-
     // select data
-    year_data.forEach(function (d) {
+    happydata.forEach(function (d) {
         d[var1] = +d[var1];
-        d[var2] = +d[var2]
+        d[var2] = +d[var2];
+        d["visible"] = true;
     });
 
-    var xMax = d4.max(year_data, function(d) {
+    var xMax = d4.max(happydata, function(d) {
         return d[xCat];
     }) * 1.05,
-        xMin = d4.min(year_data, function(d) {
+        xMin = d4.min(happydata, function(d) {
             return d[xCat];
         }),
         xMin = xMin > 0 ? 0 : xMin,
-        yMax = d4.max(year_data,
+        yMax = d4.max(happydata,
             function(d) {
             return d[yCat];
         }) * 1.05,
-        yMin = d4.min(year_data, function(d) {
+        yMin = d4.min(happydata, function(d) {
                 return d[yCat];
         }),
         yMin = yMin > 0 ? 0 : yMin;
@@ -83,6 +73,7 @@ function scatter(var1, var2) {
         .scaleExtent([0, 500])
         .on("zoom", zoom);
 
+    // create graph
     var svg = d4.select("#scatter_div")
         .append("svg")
         .attr("id", "scatter")
@@ -98,6 +89,7 @@ function scatter(var1, var2) {
         .attr("width", width)
         .attr("height", height);
 
+    // X axis
     svg.append("g")
         .classed("x axis", true)
         .attr("transform", "translate(0," + height + ")")
@@ -109,6 +101,7 @@ function scatter(var1, var2) {
         .style("text-anchor", "end")
         .text(xCat);
 
+    // Y axis
     svg.append("g")
         .classed("y axis", true)
         .call(yAxis)
@@ -140,8 +133,8 @@ function scatter(var1, var2) {
         .attr("x2", 0)
         .attr("y2", height);
 
-    objects.selectAll(".dot")
-        .data(year_data)
+    var dots = objects.selectAll(".dot")
+        .data(happydata)
         .enter().append("circle")
         .classed("dot", true)
         .attr("id", function(d){
@@ -149,20 +142,31 @@ function scatter(var1, var2) {
         })
         .attr("r",  5)
         .attr("transform", transform)
+        .on("mouseover", tip.show)
+        .on("mouseout", tip.hide)
+        // .attr("clip-path", "url(#clip)")//use clip path to make irrelevant part invisible
         .style("fill", function(d) {
-            return color(d[colorCat]); });
-        // .on("mouseover", tip.show)
-        // .on("mouseout", tip.hide);
+            if (d["visible"] == false){
+                return "none";
+            }
+            else{
+                return color(d[colorCat]);
+            }
+        });
 
     var legend = svg.selectAll(".legend")
         .data(color.domain())
         .enter().append("g")
         .classed("legend", true)
+        .attr("class", "legend-box")
         .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
     legend.append("circle")
         .attr("r", 3.5)
         .attr("cx", width + 20)
+        .attr("id", function(d){
+            return "leg_" + d;
+        })
         .attr("fill", color);
 
     legend.append("text")
@@ -170,7 +174,26 @@ function scatter(var1, var2) {
         .attr("dy", ".35em")
         .text(function(d) { return d; });
 
-	// give X to scatter function
+    // On click make dots visible
+    legend.on("click", function(year) {
+        happydata.forEach(function(d){
+            if (d["year"] == year){
+                return d.visible = !d.visible;
+            }
+        });
+        dots.style("fill", function(d) {
+            if (d["visible"] == false){
+                d3.select("#leg_" + year).style("visibility", "hidden");
+                return "none";
+            }
+            else{
+                d3.select("#leg_" + year).style("visibility", "visible");
+                return color(d[colorCat]);
+            }
+        });
+    });
+
+    // give X to scatter function
 	d4.selectAll(".d").on("click", function () {
 		var1 = this.getAttribute("value");
 		update_scatter(var1, var2);
@@ -186,23 +209,23 @@ function scatter(var1, var2) {
     function update_scatter(var1, var2) {
         xCat = var1;
         yCat = var2;
-        xMax = d4.max(year_data, function(d) { return d[xCat]; });
-        xMin = d4.min(year_data, function(d) { return d[xCat]; });
-        yMax = d4.max(year_data, function(d) { return d[yCat]; });
-        yMin = d4.min(year_data, function(d) { return d[yCat]; });
+        xMax = d4.max(happydata, function(d) { return d[xCat]; });
+        xMin = d4.min(happydata, function(d) { return d[xCat]; });
+        yMax = d4.max(happydata, function(d) { return d[yCat]; });
+        yMin = d4.min(happydata, function(d) { return d[yCat]; });
 
-        var xMax = d4.max(year_data, function(d) {
+        var xMax = d4.max(happydata, function(d) {
         return d[xCat];
         }) * 1.05,
-        xMin = d4.min(year_data, function(d) {
+        xMin = d4.min(happydata, function(d) {
             return d[xCat];
         }),
         xMin = xMin > 0 ? 0 : xMin,
-        yMax = d4.max(year_data,
+        yMax = d4.max(happydata,
             function(d) {
             return d[yCat];
         }) * 1.05,
-        yMin = d4.min(year_data, function(d) {
+        yMin = d4.min(happydata, function(d) {
                 return d[yCat];
         }),
         yMin = yMin > 0 ? 0 : yMin;

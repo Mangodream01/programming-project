@@ -44,3 +44,9 @@ Tooltip content in parallel coordinates is right. I made dropdown menus to pick 
 ##### 23-06-2017
 I wrote an update function for my new scatter plot. The screen keeps going up whenever I pick another variable, so it is tiring to improve it. My parallel coordinates become prettier and prettier, but I can’t seem to think of a way to keep a line highlighted when clicked upon. 
 
+##### 26-06-2017 
+Found out why the screen kept going up whenever I picked a variable (href = #). I improved the scatter plot by updating the data by selecting the legend. I removed the former update function and the checkboxes, which were now redundant. I found the tooltip of the scatter plot, although it is super buggy (errors) and needs some fixing. Moreover, I changed the link between the map and parallel coordinates from hover and click event to click event only, because manipulating the parallel coordinates destroys the working of the basic functions of the graph. I am planning to make a reset button to easily reset the parallel coordinates after too much manipulation.
+
+
+
+

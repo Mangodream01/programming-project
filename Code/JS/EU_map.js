@@ -75,14 +75,14 @@ window.onload = function() {
 
 	});
 
+	// info pop over
+	$('[data-toggle="popover"]').popover({
+		container: 'body'
+	});
+
 	// change map when button clicked
 	d3.selectAll(".m").on("click", function () {
 		variable = this.getAttribute("value");
 		fillDataInGraph(years, variable);
-	});
-
-	// update scatterplot if checkbox (un)checked
-	d4.selectAll(".n").on("change", function(){
-		scatter(var1, var2);
 	});
 };

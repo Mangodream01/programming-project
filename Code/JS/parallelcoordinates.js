@@ -1,3 +1,21 @@
+
+function select_line(country_name){
+
+    d3.select(country_name)
+        .style("stroke", "#586674")
+        .style("fill", "none")
+        .style("stroke-width", "2");
+}
+
+function unselect_line(country_name){
+
+    d3.select(country_name)
+        .style("stroke", "#b6bfc8")
+        .style("fill", "none")
+        .style("stroke-width", "1");
+}
+
+
 var pathFunction;
 
 
@@ -16,12 +34,6 @@ function add_graph(years) {
         y = {},
         dragging = {};
 
-    // define line
-    var line = d4.svg.line(),
-        axis = d4.svg.axis().orient("left"),
-        background,
-        foreground;
-
     // subtitle
     d4.select("#graph_div")
         .text("Happiness variables from European countries in " + years)
@@ -34,6 +46,12 @@ function add_graph(years) {
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    // define line
+    var line = d4.svg.line(),
+        axis = d4.svg.axis().orient("left"),
+        background,
+        foreground;
 
     // select data per year
     var year_data = [];
@@ -90,8 +108,8 @@ function add_graph(years) {
             return result;
         })
         .on("mouseover", function (d) {
-                tip.html(d["country"]);
-				return tip.style("visibility", "visible");})
+            tip.html(d["country"]);
+            return tip.style("visibility", "visible");})
         .on("mousemove", function () {
             return tip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px");})
         .on("mouseout", function () {
@@ -178,7 +196,7 @@ function add_graph(years) {
     pathFunction = path;
 
     function brushstart() {
-    d4.event.sourceEvent.stopPropagation();
+        d4.event.sourceEvent.stopPropagation();
     }
 
     // Handles a brush event, toggling the display of foreground lines.

@@ -125,4 +125,9 @@ footer {
     stroke-width: 1,25px;
 }
 
+.popover{
+    max-width: 100%;
+    text-align: justify;
+}
+
 
