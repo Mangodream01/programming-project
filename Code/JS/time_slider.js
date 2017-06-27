@@ -1,3 +1,9 @@
+/**
+ * Name: Thirza Dado
+ * Student number: 10492682
+ * This JavaScript program contains functions to create a time slider (2006-2015).
+ */
+
 // create svg slider
 function insert_slider() {
 

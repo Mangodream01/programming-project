@@ -1,28 +1,33 @@
+/**
+ * Name: Thirza Dado
+ * Student number: 10492682
+ * This JavaScript program contains functions to create parallel coordinates.
+ */
 
+// highlight line of parallelcoordinates
 function select_line(country_name){
-
     d3.select(country_name)
         .style("stroke", "#586674")
         .style("fill", "none")
         .style("stroke-width", "2");
 }
 
+// unhighlight line of parallel coordinates
 function unselect_line(country_name){
-
     d3.select(country_name)
         .style("stroke", "#b6bfc8")
         .style("fill", "none")
         .style("stroke-width", "1");
 }
 
-
+// global function to draw paths
 var pathFunction;
 
 
 // add parallel coordinates
 function add_graph(years) {
 
-    // d4.select('#graph').remove();
+    // d4.select("#graph").remove();
 
     // margins
     var margin = {top: 100, right: 100, bottom: 50, left: 10},
@@ -61,7 +66,7 @@ function add_graph(years) {
         }
     });
 
-    // Extract the list of dimensions and create a scale for each.
+    // extract the list of dimensions and create a scale for each.
     x.domain(dimensions = d4.keys(happydata[0]).filter(function (d) {
         return d != "country" && d != "year" && (y[d] = d4.scale.linear()
                 .domain(d4.extent(happydata, function (p) {
@@ -77,7 +82,7 @@ function add_graph(years) {
         .style("position", "absolute")
         .style("visibility", "hidden");
 
-    // Add grey background lines for context.
+    // add grey background lines for context
     background = svg.append("g")
         .attr("class", "background")
         .selectAll("path")
@@ -96,7 +101,7 @@ function add_graph(years) {
         .on("mouseout", function () {
             return tip.style("visibility", "hidden");});
 
-    // Add blue foreground lines for focus.
+    // add blue foreground lines for focus
     foreground = svg.append("g")
         .attr("class", "foreground")
         .selectAll("path")
@@ -115,7 +120,7 @@ function add_graph(years) {
         .on("mouseout", function () {
             return tip.style("visibility", "hidden");});
 
-    // Add a group element for each dimension.
+    // add a group element for each dimension
     var g = svg.selectAll(".dimension")
         .data(dimensions)
         .enter().append("g")
@@ -154,7 +159,7 @@ function add_graph(years) {
                     .attr("visibility", null);
             }));
 
-    // Add an axis and title.
+    // add an axis and title
     g.append("g")
         .attr("class", "axis")
         .each(function (d) {
@@ -168,7 +173,7 @@ function add_graph(years) {
         })
         .attr("transform", "rotate(-30)");
 
-    // Add and store a brush for each axis.
+    // add and store a brush for each axis
     g.append("g")
         .attr("class", "brush")
         .each(function (d) {
@@ -188,7 +193,7 @@ function add_graph(years) {
         return g.transition().duration(800);
     }
 
-    // Returns the path for a given data point.
+    // returns the path for a given data point
     function path(d) {
         return line(dimensions.map(function(p) { return [position(p), y[p](d[p])]; }));
     }
@@ -199,7 +204,7 @@ function add_graph(years) {
         d4.event.sourceEvent.stopPropagation();
     }
 
-    // Handles a brush event, toggling the display of foreground lines.
+    // handles a brush event, toggling the display of foreground lines
     function brush() {
         var actives = dimensions.filter(function (p) {
                 return !y[p].brush.empty();
@@ -220,12 +225,14 @@ function update_graph(years) {
 
     // select data per year
     var year_data = [];
-    var id = [];
+    var not_year_data = [];
 
     Object.values(happydata).forEach(function (d) {
         if (d["year"] == years) {
             year_data.push(d);
-            id.push(d["country"]);
+        }
+        else{
+            not_year_data.push(d);
         }
     });
 
@@ -245,9 +252,22 @@ function update_graph(years) {
     var enter_2 = update_2.enter()
         .append("path");
 
+    // // exit remove
+    // var update_3 = d3.select("#graph")
+    //     .select("g.foreground")
+    //     .selectAll("path")
+    //     .data(not_year_data);
+    //
+    // // exit remove
+    // var update_4 = d3.select("#graph")
+    //     .select("g.background")
+    //     .selectAll("path")
+    //     .data(not_year_data);
+
     update_1.merge(enter_1).transition().duration(800).attr("d", pathFunction);
     update_2.merge(enter_2).transition().duration(800).attr("d", pathFunction);
-
+    // update_3.exit().remove();
+    // update_4.exit().remove();
 }
 
 

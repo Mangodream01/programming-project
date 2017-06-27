@@ -4,7 +4,6 @@
  * This JavaScript program contains functions to create an interactive world map
  */
 
-
 // load in data from csv
 d4.csv("Code/PY and files/file.csv", function(error, data) {
 	happydata = data;
@@ -21,14 +20,15 @@ var var2 = "Log GDP per capita";
 function give_year (year) {
 	fillDataInGraph(year, variable);
 	update_graph(year);
+	update_scatter_years(year);
 }
 
 // make map
 window.onload = function() {
 
 	// width and height
-	var w = 600; // 400
-	var h = 450; // 300
+	var w = 600;
+	var h = 450;
 
 	// define map projection
 	var projection = d3.geo.mercator()
@@ -65,7 +65,7 @@ window.onload = function() {
 		insert_slider();
 
 		// first data view
-		fillDataInGraph(years, variable);
+		fill_data_in_graph(years, variable);
 
 		// add parallel coordinates
 		add_graph(years);
@@ -77,12 +77,12 @@ window.onload = function() {
 
 	// info pop over
 	$('[data-toggle="popover"]').popover({
-		container: 'body'
+		container: "body"
 	});
 
 	// change map when button clicked
 	d3.selectAll(".m").on("click", function () {
 		variable = this.getAttribute("value");
-		fillDataInGraph(years, variable);
+		fill_data_in_graph(years, variable);
 	});
 };

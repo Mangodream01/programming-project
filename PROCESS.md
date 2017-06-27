@@ -47,6 +47,8 @@ I wrote an update function for my new scatter plot. The screen keeps going up wh
 ##### 26-06-2017 
 Found out why the screen kept going up whenever I picked a variable (href = #). I improved the scatter plot by updating the data by selecting the legend. I removed the former update function and the checkboxes, which were now redundant. I found the tooltip of the scatter plot, although it is super buggy (errors) and needs some fixing. Moreover, I changed the link between the map and parallel coordinates from hover and click event to click event only, because manipulating the parallel coordinates destroys the working of the basic functions of the graph. I am planning to make a reset button to easily reset the parallel coordinates after too much manipulation.
 
+##### 27-06-2017 
+Today I fixed the tooltip of the scatter plot that now displays country, X, and Y. The selecting of dots by clicking on years in the legend works perfectly now. Moreover, the data points in the scatter plot are linked to the slider as well. I made my code prettier and wrote a new read me. I also gave every happiness variable in the list an information button to hover over. I also found a big problem: the lines in the parallel coordinates do not update perfectly after sliding. I also have to think of a prettier way to link the dots in the scatter plot by clicking on a country on the map. That has to be done by tomorrow.
 
 
 

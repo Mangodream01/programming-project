@@ -1,5 +1,11 @@
+/**
+ * Name: Thirza Dado
+ * Student number: 10492682
+ * This JavaScript program contains functions to fill the specific happiness data (variable and year) in the EU map
+ */
+
 // fill data in graph
-function fillDataInGraph(year, variable) {
+function fill_data_in_graph(year, variable) {
 	d3.json("Code/PY and files/file.json", function (error, data) {
 		if (error) throw error;
 
@@ -11,13 +17,13 @@ function fillDataInGraph(year, variable) {
 			.text(variable + " in " + year)
 			.style("font-style", "italic");
 
-		// empty scoreArray
-		var scoreArray = [];
+		// empty score array
+		var score_array = [];
 
 		// get all scores over all years
 		Object.keys(data).forEach(function (years) {
 			Object.keys(data[years]).forEach(function (countries) {
-				scoreArray.push(+data[years][countries][variable])
+				score_array.push(+data[years][countries][variable])
 			});
 		});
 
@@ -53,8 +59,8 @@ function fillDataInGraph(year, variable) {
 		}
 
 		// outer bounds color coding
-		var min = Math.round(d3.min(scoreArray) * 100) / 100;
-		var max = Math.round(d3.max(scoreArray) * 100) / 100;			// in legenda op 1 decimaal?
+		var min = Math.round(d3.min(score_array) * 100) / 100;
+		var max = Math.round(d3.max(score_array) * 100) / 100;
 
 		// scale values, assign color
 		var linear = d3.scaleLinear()
@@ -76,14 +82,15 @@ function fillDataInGraph(year, variable) {
 		var legendLinear = d3.legendColor()
 			.shapeWidth(20)
 			.cells(9)
-			.orient('vertical')
+			.orient("vertical")
 			.scale(linear);
 
 		svg.select(".legendLinear")
 			.call(legendLinear);
 
-		// empty array
+		// empty arrays
 		var arr = [];
+		var arr2 = [];
 
 		// function: is object in array
 		function include(arr,obj) {
@@ -109,14 +116,13 @@ function fillDataInGraph(year, variable) {
 				.style("position", "absolute")
 				.style("visibility", "hidden")
 				.html(function () {
-					return data[year][country]["Country"] + '<br>' +
+					return data[year][country]["Country"] + "<br>" +
 						variable + ": " + Math.round(score * 100) / 100;
 				});
 
 			// hover events: tooltip and parallel coordinates
 			d3.select(curCountry)
 				.on("click", function () {
-
 					// select line in parallel coordinates
 					if (arr.length < 1){
 						arr.push(curCountry);
@@ -137,13 +143,25 @@ function fillDataInGraph(year, variable) {
 					}
 
 					// select dot in scatter plot
-					d3.select(dot_name)
-						.style("fill-opacity", 1)
-						.style("fill", "black");
+					if (arr2.length < 1){
+						arr2.push(curCountry);
+						select_dot(dot_name);
+					}
+					else{
+						// push country off array
+						if (include(arr2, curCountry)){
+							var index = arr2.indexOf(curCountry);
+							arr2.splice(index, 1);
+							unselect_line(dot_name);
+						}
+
+						else {
+							// push country on array
+							arr2.push(curCountry);
+						}
+					}
 				})
 				.on("mouseover", function () {
-
-					// show tooltip
 					return tooltip.style("visibility", "visible");
 				})
 				.on("mousemove", function () {

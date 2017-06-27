@@ -1,7 +1,27 @@
+/**
+ * Name: Thirza Dado
+ * Student number: 10492682
+ * This JavaScript program contains functions to create a scatter plot.
+ */
 
+// highlight dot in scatter plot
+function select_dot(dot_name){
+    d3.select(dot_name)
+        .style("fill-opacity", 1)
+        .style("fill", "black");
+}
+
+// unhighlight dot in scatter plot
+function unselect_dot(dot_name){
+    d3.select(dot_name)
+        .style("fill-opacity", 0.5)
+        .style("fill", "none");
+}
+
+// add a scatter plot
 function scatter(var1, var2) {
 
-    d4.select("#scatter").remove();
+    // d4.select("#scatter").remove();
 
     // set margins
     var margin = {top: 20, right: 100, bottom: 80, left: 50},
@@ -31,18 +51,18 @@ function scatter(var1, var2) {
     var xMax = d4.max(happydata, function(d) {
         return d[xCat];
     }) * 1.05,
-        xMin = d4.min(happydata, function(d) {
-            return d[xCat];
-        }),
-        xMin = xMin > 0 ? 0 : xMin,
-        yMax = d4.max(happydata,
-            function(d) {
+    xMin = d4.min(happydata, function(d) {
+        return d[xCat];
+    }),
+    xMin = xMin > 0 ? 0 : xMin,
+    yMax = d4.max(happydata,
+        function(d) {
+        return d[yCat];
+    }) * 1.05,
+    yMin = d4.min(happydata, function(d) {
             return d[yCat];
-        }) * 1.05,
-        yMin = d4.min(happydata, function(d) {
-                return d[yCat];
-        }),
-        yMin = yMin > 0 ? 0 : yMin;
+    }),
+    yMin = yMin > 0 ? 0 : yMin;
 
     x.domain([xMin, xMax]);
     y.domain([yMin, yMax]);
@@ -59,13 +79,12 @@ function scatter(var1, var2) {
 
     var color = d4.scale.category10();
 
-    // create tooltip
-    var tip = d3.tip()
-        .attr("class", "d3-tip")
-        .offset([-10, 0])
-        .html(function(d) {
-        return xCat + ": " + d[xCat] + "<br>" + yCat + ": " + d[yCat];
-    });
+    // define the div for the tooltip
+    var tip = d3.select("body")
+        .append("div")
+        .attr("class", "tooltipje")
+        .style("position", "absolute")
+        .style("visibility", "hidden");
 
     var zoomBeh = d4.behavior.zoom()
         .x(x)
@@ -82,8 +101,6 @@ function scatter(var1, var2) {
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
         .call(zoomBeh);
-
-    svg.call(tip);
 
     svg.append("rect")
         .attr("width", width)
@@ -133,18 +150,15 @@ function scatter(var1, var2) {
         .attr("x2", 0)
         .attr("y2", height);
 
+    // dots in the scatter plot
     var dots = objects.selectAll(".dot")
         .data(happydata)
         .enter().append("circle")
         .classed("dot", true)
         .attr("id", function(d){
-            return d["country"] + "_" + d["year"];
-        })
+            return d["country"] + "_" + d["year"];})
         .attr("r",  5)
         .attr("transform", transform)
-        .on("mouseover", tip.show)
-        .on("mouseout", tip.hide)
-        // .attr("clip-path", "url(#clip)")//use clip path to make irrelevant part invisible
         .style("fill", function(d) {
             if (d["visible"] == false){
                 return "none";
@@ -152,10 +166,19 @@ function scatter(var1, var2) {
             else{
                 return color(d[colorCat]);
             }
-        });
+        })
+        .on("mouseover", function (d) {
+            tip.html(d["country"] + "<br>" +
+                xCat + ": " + Math.round(d[xCat] * 100) / 100 + "<br>" +
+                yCat + ": " + Math.round(d[yCat] * 100) / 100);
+            return tip.style("visibility", "visible");})
+        .on("mousemove", function () {
+            return tip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px");})
+        .on("mouseout", function () {
+            return tip.style("visibility", "hidden");});
 
     var legend = svg.selectAll(".legend")
-        .data(color.domain())
+        .data(color.domain().sort(d3.descending))
         .enter().append("g")
         .classed("legend", true)
         .attr("class", "legend-box")
@@ -164,9 +187,9 @@ function scatter(var1, var2) {
     legend.append("circle")
         .attr("r", 3.5)
         .attr("cx", width + 20)
+        .attr("class", "leg_dot")
         .attr("id", function(d){
-            return "leg_" + d;
-        })
+            return "leg_" + d;})
         .attr("fill", color);
 
     legend.append("text")
@@ -174,21 +197,32 @@ function scatter(var1, var2) {
         .attr("dy", ".35em")
         .text(function(d) { return d; });
 
-    // On click make dots visible
+    // only display 2012 on start screen
+    update_scatter_years("2012");
+
+    // on click make dots visible
     legend.on("click", function(year) {
+
+        var true_or_false = d4.select("#leg_" + year).style("visibility");
+        if (true_or_false == "visible"){
+            d4.select("#leg_" + year).style("visibility", "hidden");
+        }
+        else{
+            d4.select("#leg_" + year).style("visibility", "visible");
+        }
+
         happydata.forEach(function(d){
             if (d["year"] == year){
-                return d.visible = !d.visible;
+                d.visible = !d.visible;
             }
         });
-        dots.style("fill", function(d) {
+
+        dots.style("visibility", function(d) {
             if (d["visible"] == false){
-                d3.select("#leg_" + year).style("visibility", "hidden");
-                return "none";
+                return "hidden";
             }
             else{
-                d3.select("#leg_" + year).style("visibility", "visible");
-                return color(d[colorCat]);
+                return "visible";
             }
         });
     });
@@ -205,7 +239,7 @@ function scatter(var1, var2) {
 		update_scatter(var1, var2);
 	});
 
-
+    // update scatter plot if new variable selected
     function update_scatter(var1, var2) {
         xCat = var1;
         yCat = var2;
@@ -233,6 +267,7 @@ function scatter(var1, var2) {
         x.domain([xMin, xMax]);
         y.domain([yMin, yMax]);
 
+        // update data
         zoomBeh.x(x.domain([xMin, xMax])).y(y.domain([yMin, yMax]));
         zoomBeh.y(y.domain([yMin, yMax])).x(x.domain([xMin, xMax]));
         var svg = d4.select("#scatter").transition();
@@ -253,7 +288,43 @@ function scatter(var1, var2) {
     }
 }
 
+// update scatter plot when time slider is changed
+function update_scatter_years(year) {
+    // change visible variable
+    happydata.forEach(function (d) {
+        if (d["year"] == year) {
+            d.visible = true;
+        }
+        else {
+            d.visible = false;
+        }
+    });
 
+    // hide or show legend dot
+    var legend = d4.select("#scatter_div").selectAll(".leg_dot");
+    // var legValues = Object.values(legend);
+    for (var i = 0; i < 9; i++){
+        var id = legend[0][i]["id"];
+        if (id.substr(id.length-4) == year) {
+            d4.select("#" + id).style("visibility", "visible")
+        }
+        else{
+            d4.select("#" + id).style("visibility", "hidden")
+        }
+
+    }
+
+    // hide or show dots
+    var dots = d4.select("#scatter_div").selectAll(".dot");
+    dots.style("visibility", function(d) {
+        if (d["visible"] == false){
+            return "hidden";
+        }
+        else{
+            return "visible";
+        }
+    });
+}
 
 
 

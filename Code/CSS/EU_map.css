@@ -30,38 +30,38 @@ div.tooltipje {
     border-radius: 2px;
 }
 
-/* Remove the navbar's default margin-bottom and rounded borders */
+/* remove the navbar's default margin-bottom and rounded borders */
 .navbar {
-  margin-bottom: 0;
-  border-radius: 0;
+    margin-bottom: 0;
+    border-radius: 0;
 }
 
 .navbar-brand-centered {
-		position: absolute;
-		text-align: center;
-        display: block;
-        left: 40%;
-	}
-
-/* Set black background color, white text and some padding */
-footer {
-  background-color: #555;
-  color: white;
-  padding: 15px;
+    position: absolute;
+    text-align: center;
+    display: block;
+    left: 40%;
 }
 
-/* On small screens, set height to 'auto' for sidenav and grid */
+/* set black background color, white text and some padding */
+footer {
+    background-color: #555;
+    color: white;
+    padding: 15px;
+}
+
+/* on small screens, set height to 'auto' for sidenav and grid */
 @media screen and (max-width: 767px) {
-  .sidenav {
+    .sidenav {
     height: auto;
     padding: 15px;
-  }
-  .row.content {height:auto;}
+    }
+    .row.content {height:auto;}
 }
 
 .flexcontainer {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 @media (max-width: 320px) {
     .flexcontainer {
@@ -81,7 +81,7 @@ footer {
 }
 
 .list {
-    width: 300px;
+    width: 350px;
     margin-left: auto;
     margin-right: 200px;
     margin-top: 0;
@@ -89,9 +89,8 @@ footer {
 
 }
 
-
 .ticks {
-  font: 10px sans-serif;
+    font: 10px sans-serif;
 }
 
 .track,
@@ -127,7 +126,6 @@ footer {
 
 .popover{
     max-width: 100%;
-    text-align: justify;
 }
 
 

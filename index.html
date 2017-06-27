@@ -7,6 +7,7 @@
 
 <html lang="en">
     <head>
+        <!--Sources and stylesheets-->
         <title>Programming project</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,6 +29,7 @@
 
     </head>
     <body>
+        <!--the top (black) header-->
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -46,57 +48,92 @@
             <h3>Happiness in Europe (2006-2015)</h3>
         </div>
 
-
+        <!--the EU map and list of happiness variables-->
         <div class="flexcontainer">
             <div id="container" ></div>
             <!--List-->
             <div class="list">
                 <h4> Pick a variable:</h4>
                 <ul class="list-group">
-                    <li class="list-group-item"><a class="m" value="Life Ladder" href="#">Life Ladder</a>
+                    <li class="list-group-item"><a class="m" value="Life Ladder">Life Ladder</a>
                         <a href="#" title="Cantril Self-Anchoring Scale" data-toggle="popover" data-trigger="hover"
                            data-content="Imagine a ladder with steps 0 (bottom) to 10 (top). The top
                            represents the best possible life for you and the bottom the worst possible life for you.
                            On which step of the ladder would you say you personally feel you stand at this time?">
-                            <img src="doc/Info-logo.jpg" width="15" height ="15"></a></li>
-                    <li class="list-group-item"><a class="m" value="Log GDP per capita" href="#">Log GDP per capita</a>
+                            <img src="doc/Info-logo.jpg" width="15" height ="15"></a>
+                    </li>
+                    <li class="list-group-item"><a class="m" value="Log GDP per capita">Log GDP per capita</a>
                      <a href="#" title="Gross domestic product (GDP)" data-toggle="popover" data-trigger="hover"
                         data-content="A measure of market value of final goods and services, and can be used to estimate
                         the health of a country’s economy.">
-                            <img src="doc/Info-logo.jpg" width="15" height ="15"></a></li>
-                    <li class="list-group-item"><a class="m" value="Social support" href="#">Social support</a>
+                            <img src="doc/Info-logo.jpg" width="15" height ="15"></a>
+                    </li>
+                    <li class="list-group-item"><a class="m" value="Social support">Social support</a>
                      <a href="#" title="Social support" data-toggle="popover" data-trigger="hover"
                         data-content="The perception and actuality that one is cared for, has assistance available from
-                        other people, and that one is part of a supportive social network. ">
-                            <img src="doc/Info-logo.jpg" width="15" height ="15"></a></li>
-                    <li class="list-group-item"><a class="m" value="Healthy life expectancy at birth"
-                                                   href="#">Healthy life expectancy at birth</a></li>
-                    <li class="list-group-item"><a class="m" value="Freedom to make life choices"
-                                                   href="#">Freedom to make life choices</a></li>
-                    <li class="list-group-item"><a class="m" value="Generosity" href="#">Generosity</a></li>
-                    <li class="list-group-item"><a class="m" value="Perceptions of corruption"
-                                                   href="#">Perceptions of corruption</a></li>
-                    <li class="list-group-item"><a class="m" value="Positive affect" href="#">Positive affect</a>
+                        other people, and that one is part of a supportive social network.">
+                            <img src="doc/Info-logo.jpg" width="15" height ="15"></a>
+                    </li>
+                    <li class="list-group-item"><a class="m" value="Healthy life expectancy at birth">
+                                                   Healthy life expectancy at birth</a>
+                        <a href="#" title="Healthy life expectancy at birth" data-toggle="popover" data-trigger="hover"
+                        data-content="Computation of number of years of life expected to be lived in full health.">
+                            <img src="doc/Info-logo.jpg" width="15" height ="15"></a>
+                    </li>
+                    <li class="list-group-item"><a class="m" value="Freedom to make life choices">
+                                                   Freedom to make life choices</a>
+                        <a href="#" title="Freedom to make life choices" data-toggle="popover" data-trigger="hover"
+                        data-content="The national average of responses to the question “Are you satisfied or
+                        dissatisfied with your freedom to choose what you do with your life?”">
+                            <img src="doc/Info-logo.jpg" width="15" height ="15"></a>
+                    </li>
+                    <li class="list-group-item"><a class="m" value="Generosity">Generosity</a>
+                        <a href="#" title="Generosity" data-toggle="popover" data-trigger="hover"
+                        data-content="The national average of responses to questions like: “helped a stranger, or
+                        someone they didn’t know who needed help”, “donated money to a charity”, and “volunteered your
+                        time to an organization”.">
+                            <img src="doc/Info-logo.jpg" width="15" height ="15"></a>
+                    </li>
+                    <li class="list-group-item"><a class="m" value="Perceptions of corruption">
+                                                   Perceptions of corruption</a>
+                        <a href="#" title="Perceptions of corruption" data-toggle="popover" data-trigger="hover"
+                        data-content="The national average of responses to questions like: is corruption widespread
+                        throughout the government or not” and “Is corruption widespread within businesses or not?” Where
+                        data for government corruption are missing, the perception of business corruption is used as the
+                        overall corruption-perception measure.">
+                            <img src="doc/Info-logo.jpg" width="15" height ="15"></a>
+                    </li>
+                    <li class="list-group-item"><a class="m" value="Positive affect">Positive affect</a>
                      <a href="#" title="Positive affect" data-toggle="popover" data-trigger="hover"
-                        data-content="The extent to which an individual subjectively experiences positive moods such as
-                        joy, interest, and alertness.">
-                            <img src="doc/Info-logo.jpg" width="15" height ="15"></a></li>
-                    <li class="list-group-item"><a class="m" value="Negative affect" href="#">Negative affect</a>
+                        data-content="The average of previous-day affect measures for happiness, laughter and enjoyment.">
+                            <img src="doc/Info-logo.jpg" width="15" height ="15"></a>
+                    </li>
+                    <li class="list-group-item"><a class="m" value="Negative affect">Negative affect</a>
                      <a href="#" title="Negative affect" data-toggle="popover" data-trigger="hover"
-                        data-content="The extent to which an individual subjectively experiences feelings of
-                        emotional distress.">
-                            <img src="doc/Info-logo.jpg" width="15" height ="15"></a></li>
-                    <li class="list-group-item"><a class="m" value="Confidence in national government"
-                                                   href="#">Confidence in national government</a></li>
-                    <li class="list-group-item"><a class="m" value="Democratic Quality" href="#">Democratic Quality</a>
+                        data-content="The average of previous-day affect measures for worry, sadness and anger.">
+                            <img src="doc/Info-logo.jpg" width="15" height ="15"></a>
+                    </li>
+                    <li class="list-group-item"><a class="m" value="Confidence in national government">
+                                                   Confidence in national government</a>
+                        <a href="#" title="Confidence in national government" data-toggle="popover" data-trigger="hover"
+                        data-content="The national average of responses to questions like: I am going to read you a list
+                        of institutions in society (e.g. military, small business, police, church, medical system).
+                        Please tell me much confidence you, yourself, have in each one -- a great deal, quite a lot,
+                        some or very little. ">
+                            <img src="doc/Info-logo.jpg" width="15" height ="15"></a>
+                    </li>
+                    <li class="list-group-item"><a class="m" value="Democratic Quality">Democratic Quality</a>
                      <a href="#" title="Democratic Quality" data-toggle="popover" data-trigger="hover"
                         data-content="Estimation by multiple dimensions on which democracies vary in quality. These
                         dimensions are closely linked and tend to move together, either toward democratic improvement
                         and deepening or toward decay.">
-                            <img src="doc/Info-logo.jpg" width="15" height ="15"></a></li>
+                            <img src="doc/Info-logo.jpg" width="15" height ="15"></a>
+                    </li>
                 </ul>
             </div>
         </div>
+
+        <!--the parallel coordinates and scatter plot-->
         <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#menu1">Parallel coordinates</a></li>
             <li><a data-toggle="tab" href="#menu2">Scatter plot</a></li>
@@ -153,14 +190,15 @@
             </div>
         </div>
 
+        <!--the footer-->
         <footer class="container-fluid text-center">
                 <h6>Source: <a href="http://worldhappiness.report/">World Happiness Report</a></h6>
         </footer>
 
-        <script src="Code/JS/fillDataInGraph.js"></script>
+        <!--scripts-->
+        <script src="Code/JS/fill_data_in_graph.js"></script>
         <script src="Code/JS/time_slider.js"></script>
         <script src="Code/JS/parallelcoordinates.js"></script>
-        <script src="Code/JS/checkboxes.js"></script>
         <script src="Code/JS/scatter.js" charset="utf-8"></script>
         <script src="Code/JS/EU_map.js"></script>
     </body>
