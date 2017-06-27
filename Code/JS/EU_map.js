@@ -18,7 +18,7 @@ var var2 = "Log GDP per capita";
 
 // global function: get year from slider
 function give_year (year) {
-	fillDataInGraph(year, variable);
+	fill_data_in_graph(year, variable);
 	update_graph(year);
 	update_scatter_years(year);
 }
