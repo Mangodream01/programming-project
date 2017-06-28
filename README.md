@@ -15,13 +15,13 @@ Source: http://worldhappiness.report/download/
 
 
 
-![screenshot 1]("doc/screenshot1.png")
+![screenshot 1](./doc/"screenshot1.png")
 Image 1 EU map
 
-![screenshot 2]("doc/screenshot2.png")
+![screenshot 2](/doc/"screenshot2.png")
 Image 2 Parallel coordinates
 
-![screenshot 3]("doc/screenshot3.png")
+![screenshot 3](doc/"screenshot3.png")
 Image 3 Scatter plot
 
  
