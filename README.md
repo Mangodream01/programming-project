@@ -37,7 +37,7 @@ D Struths for his legend
 
 Image 1 EU map:
 
-![screenshot 1](/doc/screenhot1.png)
+![screenshot 1](https://github.com/Mangodream01/programming-project/blob/master/doc/screenshot1.png)
 
 Image 2 Parallel coordinates
 
