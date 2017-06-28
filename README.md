@@ -13,7 +13,7 @@ Switch to the second tab (above the title of the lower visualization). The begin
 Source: http://worldhappiness.report/download/ 
 
 
-![screenshot 1](https://github.com/Mangodream01/programming-project/blob/master/doc/afb1.jpeg)
+![screenshot 1](doc/screenhot1.png)
 Image 1 EU map
 
 ![screenshot 2](/doc/screenshot2.png)
