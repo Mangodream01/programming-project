@@ -4,19 +4,16 @@
  * This JavaScript program contains functions to create a scatter plot.
  */
 
-// highlight dot in scatter plot
-// function select_dot(dot_name){
-//     d3.select(dot_name)
-//         .style("fill-opacity", 1)
-//         .style("fill", "black");
-// }
-//
-// // unhighlight dot in scatter plot
-// function unselect_dot(dot_name){
-//     d3.select(dot_name)
-//         .style("fill-opacity", 0.5)
-//         .style("fill", "none");
-// }
+
+// highlight dot
+function highlight_dot(dot_name){
+    return d3.select(dot_name).style("fill-opacity", 1);
+}
+
+// unhighlight dot
+function unhighlight_dot(dot_name){
+    return d3.select(dot_name).style("fill-opacity", 0.3);
+}
 
 // add a scatter plot
 function scatter(var1, var2) {
@@ -302,7 +299,6 @@ function update_scatter_years(year) {
 
     // hide or show legend dot
     var legend = d4.select("#scatter_div").selectAll(".leg_dot");
-    // var legValues = Object.values(legend);
     for (var i = 0; i < 9; i++){
         var id = legend[0][i]["id"];
         if (id.substr(id.length-4) == year) {
@@ -311,10 +307,9 @@ function update_scatter_years(year) {
         else{
             d4.select("#" + id).style("visibility", "hidden")
         }
-
     }
 
-    // hide or show dots
+    // hide or show dots in scatter plot
     var dots = d4.select("#scatter_div").selectAll(".dot");
     dots.style("visibility", function(d) {
         if (d["visible"] == false){

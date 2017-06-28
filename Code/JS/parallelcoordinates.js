@@ -8,7 +8,6 @@
 function highlight_line(country_name){
     d3.select(country_name)
         .style("stroke", "#586674")
-        .style("fill", "none")
         .style("stroke-width", "2");
 }
 
@@ -16,7 +15,6 @@ function highlight_line(country_name){
 function unhighlight_line(country_name){
     d3.select(country_name)
         .style("stroke", "#b6bfc8")
-        .style("fill", "none")
         .style("stroke-width", "1");
 }
 
@@ -77,7 +75,7 @@ function add_graph(years) {
     //add tooltip parallel coordinates
     var tip = d4.select("#graph_div")
         .append("div")
-        .attr("class", "tooltipje")
+        .attr("class", "tooltipi")
         .style("position", "absolute")
         .style("visibility", "hidden");
 
@@ -89,8 +87,7 @@ function add_graph(years) {
         .enter().append("path")
         .attr("d", path)
         .attr("id", function (d, i) {
-            result = year_data[i]["country"];
-            return result;
+            return year_data[i]["country"];
         })
         .on("mouseover", function (d) {
                 tip.html(d["country"]);
@@ -108,8 +105,7 @@ function add_graph(years) {
         .enter().append("path")
         .attr("d", path)
         .attr("id", function (d, i) {
-            result = year_data[i]["country"];
-            return result;
+            return year_data[i]["country"];
         })
         .on("mouseover", function (d) {
             tip.html(d["country"]);
@@ -222,16 +218,24 @@ function add_graph(years) {
 // update parallel coordinates
 function update_graph(years) {
 
+    // subtitle
+    // d4.select("#graph_div")
+    //     .text("Happiness variables from European countries in " + years)
+    //     .style("font-style","italic");
+
+    if (arr.length > 0){
+        arr.forEach(function(d){
+            unhighlight_line(d.substring(0, d.length - 5));
+        })
+    }
+
+
     // select data per year
     var year_data = [];
-    var not_year_data = [];
 
     Object.values(happydata).forEach(function (d) {
         if (d["year"] == years) {
             year_data.push(d);
-        }
-        else{
-            not_year_data.push(d);
         }
     });
 
@@ -239,11 +243,32 @@ function update_graph(years) {
     var update_1 = d3.select("#graph")
         .select("g.foreground")
         .selectAll("path")
-        .data(year_data);
+        .data(year_data)
+        .attr("id", function (d, i) {
+            return year_data[i]["country"];
+        })
+        .on("mouseover", function (d) {
+                tip.html(d["country"]);
+				return tip.style("visibility", "visible");})
+        .on("mousemove", function () {
+            return tip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px");})
+        .on("mouseout", function () {
+            return tip.style("visibility", "hidden");});
+
     var update_2 = d3.select("#graph")
         .select("g.background")
         .selectAll("path")
-        .data(year_data);
+        .data(year_data)
+        .attr("id", function (d, i) {
+            return year_data[i]["country"];
+        })
+        .on("mouseover", function (d) {
+                tip.html(d["country"]);
+				return tip.style("visibility", "visible");})
+        .on("mousemove", function () {
+            return tip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px");})
+        .on("mouseout", function () {
+            return tip.style("visibility", "hidden");});
 
     update_1.exit().remove();
     update_2.exit().remove();
@@ -259,8 +284,7 @@ function update_graph(years) {
 
     if (arr.length > 0){
         arr.forEach(function(d){
-            console.log(d);
-            highlight_line(d);
+            highlight_line(d.substring(0, d.length - 5));
         })
     }
 }

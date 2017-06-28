@@ -7,7 +7,6 @@
 // empty array
 var arr = [];
 
-
 // fill data in graph
 function fill_data_in_graph(year, variable) {
 	d3.json("Code/PY and files/file.json", function (error, data) {
@@ -84,10 +83,12 @@ function fill_data_in_graph(year, variable) {
 
 		// draw legend
 		var legendLinear = d3.legendColor()
+			.labelFormat(d3.format(".2f"))
 			.shapeWidth(20)
 			.cells(9)
 			.orient("vertical")
 			.scale(linear);
+
 
 		svg.select(".legendLinear")
 			.call(legendLinear);
@@ -101,15 +102,15 @@ function fill_data_in_graph(year, variable) {
 		Object.keys(data[year]).forEach(function (country) {
 			// loop over EU country
 			var score = +data[year][country][variable];
-			var curCountry = "#" + country;
+			var cur_country = "#" + country;
 			var country_name = "#" + data[year][country]["Country"];
 			var dot_name = country_name + "_" + year;
 			var color = linear(score);
 
 			// fill country
-			d3.select(curCountry).attr("fill", color);
+			d3.select(cur_country).attr("fill", color);
 
-			// Define the div for the tooltip
+			// define div for tooltip
 			var tooltip = d3.select("body")
 				.append("div")
 				.attr("class", "tooltipje")
@@ -120,55 +121,30 @@ function fill_data_in_graph(year, variable) {
 						variable + ": " + Math.round(score * 100) / 100;
 				});
 
-			// hover events: tooltip and parallel coordinates
-			d3.select(curCountry)
+			d3.select(cur_country)
+				// on click (un)highlight data in other visualisations
 				.on("click", function () {
-
-					// highlight corresponding line
-					// unhighlight corresponding line
-
-
-					// select line in parallel coordinates
+					// array still empty
 					if (arr.length < 1){
-						arr.push(country_name);
+						arr.push(dot_name);
 						highlight_line(country_name);
-						console.log(arr);
+						highlight_dot(dot_name);
 					}
 					else{
-						// push country off array
-						if (include(arr, country_name)){
-							var index = arr.indexOf(country_name);
+						// item already in array
+						if (include(arr, dot_name)){
+							var index = arr.indexOf(dot_name);
 							arr.splice(index, 1);
 							unhighlight_line(country_name);
-							console.log(arr);
+							unhighlight_dot(dot_name);
 						}
-
+						// item not yet in array
 						else {
-							// push country on array
-							arr.push(country_name);
+							arr.push(dot_name);
 							highlight_line(country_name);
-							console.log(arr);
+							highlight_dot(dot_name);
 						}
 					}
-                    //
-					// // select dot in scatter plot
-					// if (arr2.length < 1){
-					// 	arr2.push(curCountry);
-					// 	select_dot(dot_name);
-					// }
-					// else{
-					// 	// push country off array
-					// 	if (include(arr2, curCountry)){
-					// 		var index = arr2.indexOf(curCountry);
-					// 		arr2.splice(index, 1);
-					// 		unselect_line(dot_name);
-					// 	}
-                    //
-					// 	else {
-					// 		// push country on array
-					// 		arr2.push(curCountry);
-					// 	}
-					// }
 				})
 				.on("mouseover", function () {
 					return tooltip.style("visibility", "visible");

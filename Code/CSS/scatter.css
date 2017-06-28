@@ -6,7 +6,6 @@ rect {
     fill: transparent;
     shape-rendering: crispEdges;
     align-items: center;
-
 }
 
 .axis path,
@@ -25,12 +24,13 @@ rect {
 
 .dot {
     fill: none;
-    fill-opacity: .5;
+    fill-opacity: .3;
 }
 
 .dot:hover{
     fill-opacity: 2;
 }
+
 
 #wrapper{
     display: flex;
