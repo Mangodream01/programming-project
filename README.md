@@ -35,14 +35,17 @@ Jonas Petersson for his zoomable scatter plot
 D Struths for his legend
 (http://bl.ocks.org/DStruths/9c042e3a6b66048b5bd4) 
 
+Image 1 EU map:
 
 ![screenshot 1](/doc/screenhot1.png)
-Image 1 EU map
 
-![screenshot 2](/doc/screenshot2.png)
 Image 2 Parallel coordinates
 
+![screenshot 2](/doc/screenshot2.png)
+
+Image 3 Zoomable scatter plot:
+
 ![screenshot 3](/doc/screenshot3.png)
-Image 3 Scatter plot
+
 
  

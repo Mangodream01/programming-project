@@ -7,9 +7,12 @@ In this graph, the user can play with all eleven variables of multiple countries
 #### Scatter plot
 A scatterplot will display the relationship between two happiness variables. The user can choose ‘variable x, variable y’ by means of a dropdown menu. All eleven variables can be chosen. 
 
+Image 1 EU map: 
 
 ![sketch1](/doc/afb1.png)
 
+Image 2 Parallel coordinates:
+ 
 ![sketch2](/doc/afb2.png)
 
 
