@@ -24,8 +24,6 @@ var pathFunction;
 // add parallel coordinates
 function add_graph(years) {
 
-    // d4.select("#graph").remove();
-
     // margins
     var margin = {top: 100, right: 100, bottom: 50, left: 10},
         width = 1300 - margin.left - margin.right,
@@ -37,9 +35,12 @@ function add_graph(years) {
         dragging = {};
 
     // subtitle
-    d4.select("#graph_div")
+    d4.select("#subtitle")
+        .append("div")
+        .attr("id", "sub2")
         .text("Happiness variables from European countries in " + years)
         .style("font-style","italic");
+
 
     // define svg
     var svg = d4.select("#graph_div").append("svg")
@@ -219,9 +220,14 @@ function add_graph(years) {
 function update_graph(years) {
 
     // subtitle
-    // d4.select("#graph_div")
-    //     .text("Happiness variables from European countries in " + years)
-    //     .style("font-style","italic");
+    d4.select("#sub2").remove();
+
+    d4.select("#subtitle")
+        .append("div")
+        .attr("id", "sub2")
+        .text("Happiness variables from European countries in " + years)
+        .style("font-style","italic");
+
 
     if (arr.length > 0){
         arr.forEach(function(d){
