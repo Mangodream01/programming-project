@@ -5,18 +5,18 @@
  */
 
 // highlight dot in scatter plot
-function select_dot(dot_name){
-    d3.select(dot_name)
-        .style("fill-opacity", 1)
-        .style("fill", "black");
-}
-
-// unhighlight dot in scatter plot
-function unselect_dot(dot_name){
-    d3.select(dot_name)
-        .style("fill-opacity", 0.5)
-        .style("fill", "none");
-}
+// function select_dot(dot_name){
+//     d3.select(dot_name)
+//         .style("fill-opacity", 1)
+//         .style("fill", "black");
+// }
+//
+// // unhighlight dot in scatter plot
+// function unselect_dot(dot_name){
+//     d3.select(dot_name)
+//         .style("fill-opacity", 0.5)
+//         .style("fill", "none");
+// }
 
 // add a scatter plot
 function scatter(var1, var2) {

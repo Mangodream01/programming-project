@@ -4,6 +4,10 @@
  * This JavaScript program contains functions to fill the specific happiness data (variable and year) in the EU map
  */
 
+// empty array
+var arr = [];
+
+
 // fill data in graph
 function fill_data_in_graph(year, variable) {
 	d3.json("Code/PY and files/file.json", function (error, data) {
@@ -88,10 +92,6 @@ function fill_data_in_graph(year, variable) {
 		svg.select(".legendLinear")
 			.call(legendLinear);
 
-		// empty arrays
-		var arr = [];
-		var arr2 = [];
-
 		// function: is object in array
 		function include(arr,obj) {
 			return (arr.indexOf(obj) != -1);
@@ -123,43 +123,52 @@ function fill_data_in_graph(year, variable) {
 			// hover events: tooltip and parallel coordinates
 			d3.select(curCountry)
 				.on("click", function () {
+
+					// highlight corresponding line
+					// unhighlight corresponding line
+
+
 					// select line in parallel coordinates
 					if (arr.length < 1){
-						arr.push(curCountry);
-						select_line(country_name);
+						arr.push(country_name);
+						highlight_line(country_name);
+						console.log(arr);
 					}
 					else{
 						// push country off array
-						if (include(arr, curCountry)){
-							var index = arr.indexOf(curCountry);
+						if (include(arr, country_name)){
+							var index = arr.indexOf(country_name);
 							arr.splice(index, 1);
-							unselect_line(country_name);
+							unhighlight_line(country_name);
+							console.log(arr);
 						}
 
 						else {
 							// push country on array
-							arr.push(curCountry);
+							arr.push(country_name);
+							highlight_line(country_name);
+							console.log(arr);
 						}
 					}
-
-					// select dot in scatter plot
-					if (arr2.length < 1){
-						arr2.push(curCountry);
-						select_dot(dot_name);
-					}
-					else{
-						// push country off array
-						if (include(arr2, curCountry)){
-							var index = arr2.indexOf(curCountry);
-							arr2.splice(index, 1);
-							unselect_line(dot_name);
-						}
-
-						else {
-							// push country on array
-							arr2.push(curCountry);
-						}
-					}
+                    //
+					// // select dot in scatter plot
+					// if (arr2.length < 1){
+					// 	arr2.push(curCountry);
+					// 	select_dot(dot_name);
+					// }
+					// else{
+					// 	// push country off array
+					// 	if (include(arr2, curCountry)){
+					// 		var index = arr2.indexOf(curCountry);
+					// 		arr2.splice(index, 1);
+					// 		unselect_line(dot_name);
+					// 	}
+                    //
+					// 	else {
+					// 		// push country on array
+					// 		arr2.push(curCountry);
+					// 	}
+					// }
 				})
 				.on("mouseover", function () {
 					return tooltip.style("visibility", "visible");

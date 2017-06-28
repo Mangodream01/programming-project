@@ -4,16 +4,16 @@
  * This JavaScript program contains functions to create parallel coordinates.
  */
 
-// highlight line of parallelcoordinates
-function select_line(country_name){
+// highlight line when click on map
+function highlight_line(country_name){
     d3.select(country_name)
         .style("stroke", "#586674")
         .style("fill", "none")
         .style("stroke-width", "2");
 }
 
-// unhighlight line of parallel coordinates
-function unselect_line(country_name){
+// unhighlight line when click on map
+function unhighlight_line(country_name){
     d3.select(country_name)
         .style("stroke", "#b6bfc8")
         .style("fill", "none")
@@ -23,7 +23,6 @@ function unselect_line(country_name){
 // global function to draw paths
 var pathFunction;
 
-
 // add parallel coordinates
 function add_graph(years) {
 
@@ -31,7 +30,7 @@ function add_graph(years) {
 
     // margins
     var margin = {top: 100, right: 100, bottom: 50, left: 10},
-        width = 1300 - margin.left - margin.right, // 1190
+        width = 1300 - margin.left - margin.right,
         height = 400 - margin.top - margin.bottom;
 
     // x, y, dragging
@@ -246,28 +245,24 @@ function update_graph(years) {
         .selectAll("path")
         .data(year_data);
 
+    update_1.exit().remove();
+    update_2.exit().remove();
+
     // append paths
     var enter_1 = update_1.enter()
         .append("path");
     var enter_2 = update_2.enter()
         .append("path");
 
-    // // exit remove
-    // var update_3 = d3.select("#graph")
-    //     .select("g.foreground")
-    //     .selectAll("path")
-    //     .data(not_year_data);
-    //
-    // // exit remove
-    // var update_4 = d3.select("#graph")
-    //     .select("g.background")
-    //     .selectAll("path")
-    //     .data(not_year_data);
-
     update_1.merge(enter_1).transition().duration(800).attr("d", pathFunction);
     update_2.merge(enter_2).transition().duration(800).attr("d", pathFunction);
-    // update_3.exit().remove();
-    // update_4.exit().remove();
+
+    if (arr.length > 0){
+        arr.forEach(function(d){
+            console.log(d);
+            highlight_line(d);
+        })
+    }
 }
 
 
