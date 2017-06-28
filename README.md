@@ -12,8 +12,31 @@ Switch to the second tab (above the title of the lower visualization). The begin
 #### Data
 Source: http://worldhappiness.report/download/ 
 
+#### External libraries
+jQuery
+Bootstrap
+D3
+D3-tip
+TopoJSON
+DataMaps
+d3-legend
+#### Acknowledgements
+Grateful acknowledgement is given to the following:
 
-![screenshot 1](doc/screenhot1.png)
+Mariella Crouy for her EU map
+(https://bl.ocks.org/MariellaCC/0055298b94fcf2c16940)
+
+Jason Davies for his parallel coordinates 
+(https://bl.ocks.org/jasondavies/1341281)
+
+Jonas Petersson for his zoomable scatter plot 
+(http://bl.ocks.org/peterssonjonas/4a0e7cb8d23231243e0e)
+
+D Struths for his legend
+(http://bl.ocks.org/DStruths/9c042e3a6b66048b5bd4) 
+
+
+![screenshot 1](/doc/screenhot1.png)
 Image 1 EU map
 
 ![screenshot 2](/doc/screenshot2.png)
