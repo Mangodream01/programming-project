@@ -222,19 +222,24 @@ function update_graph(years) {
     // subtitle
     d4.select("#sub2").remove();
 
+    //add tooltip parallel coordinates
+    var tip = d4.select("#graph_div")
+        .append("div")
+        .attr("class", "tooltipi")
+        .style("position", "absolute")
+        .style("visibility", "hidden");
+
     d4.select("#subtitle")
         .append("div")
         .attr("id", "sub2")
         .text("Happiness variables from European countries in " + years)
         .style("font-style","italic");
 
-
     if (arr.length > 0){
         arr.forEach(function(d){
             unhighlight_line(d.substring(0, d.length - 5));
         })
     }
-
 
     // select data per year
     var year_data = [];

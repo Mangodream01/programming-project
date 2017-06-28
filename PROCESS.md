@@ -50,5 +50,7 @@ Found out why the screen kept going up whenever I picked a variable (href = #). 
 ##### 27-06-2017 
 Today I fixed the tooltip of the scatter plot that now displays country, X, and Y. The selecting of dots by clicking on years in the legend works perfectly now. Moreover, the data points in the scatter plot are linked to the slider as well. I made my code prettier and wrote a new read me. I also gave every happiness variable in the list an information button to hover over. I also found a big problem: the lines in the parallel coordinates do not update perfectly after sliding. I also have to think of a prettier way to link the dots in the scatter plot by clicking on a country on the map. That has to be done by tomorrow.
 
+##### 28-06-2017 
+Everything works! The lines in the parallel coordinates update perfectly, and also dots in the scatter plot are not buggy anymore when the user clicks on the EU map. I only need to finish the story telling aspect. I will finish that tomorrow morning, right in time before the screencast.
 
 
