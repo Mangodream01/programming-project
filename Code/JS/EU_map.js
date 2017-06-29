@@ -74,6 +74,7 @@ window.onload = function() {
 		scatter(var1, var2);
 	});
 
+	// modal on load
 	$('#myModal0').modal('show');
 
 	// info pop over

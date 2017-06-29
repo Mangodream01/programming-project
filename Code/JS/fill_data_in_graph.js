@@ -6,6 +6,7 @@
 
 // empty array
 var arr = [];
+var arr2 = [];
 
 // fill data in graph
 function fill_data_in_graph(year, variable) {
@@ -103,7 +104,7 @@ function fill_data_in_graph(year, variable) {
 			// loop over EU country
 			var score = +data[year][country][variable];
 			var cur_country = "#" + country;
-			var country_name = "#" + data[year][country]["Country"];
+			var country_name = "#" + data[year][country]["Country"].replace(/\s/g, '');
 			var dot_name = country_name + "_" + year;
 			var color = linear(score);
 
@@ -127,7 +128,6 @@ function fill_data_in_graph(year, variable) {
 					// array still empty
 					if (arr.length < 1){
 						arr.push(dot_name);
-						highlight_line(country_name);
 						highlight_dot(dot_name);
 					}
 					else{
@@ -135,14 +135,30 @@ function fill_data_in_graph(year, variable) {
 						if (include(arr, dot_name)){
 							var index = arr.indexOf(dot_name);
 							arr.splice(index, 1);
-							unhighlight_line(country_name);
 							unhighlight_dot(dot_name);
 						}
 						// item not yet in array
 						else {
 							arr.push(dot_name);
-							highlight_line(country_name);
 							highlight_dot(dot_name);
+						}
+					}
+
+					if (arr2.length < 1){
+						arr2.push(country_name);
+						highlight_line(country_name);
+					}
+					else{
+						// item already in array
+						if (include(arr2, country_name)){
+							var index2 = arr2.indexOf(country_name);
+							arr2.splice(index2, 1);
+							unhighlight_line(country_name);
+						}
+						// item not yet in array
+						else {
+							arr2.push(country_name);
+							highlight_line(country_name);
 						}
 					}
 				})

@@ -21,19 +21,6 @@ function unhighlight_line(country_name){
 // global function to draw paths
 var pathFunction;
 
-function mouse_over(tip, year_data){
-    tip.html(year_data["country"]);
-    return tip.style("visibility", "visible");
-}
-
-function mouse_move(tip){
-    return tip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px");
-}
-
-function mouse_out(tip){
-    return tip.style("visibility", "hidden");
-}
-
 // add parallel coordinates
 function add_graph(years) {
 
@@ -101,7 +88,7 @@ function add_graph(years) {
         .enter().append("path")
         .attr("d", path)
         .attr("id", function (d, i) {
-            return year_data[i]["country"];
+            return year_data[i]["country"].replace(/\s/g, '');
         })
         .on("mouseover", function (d) {
             tip.html(d["country"]);
@@ -119,7 +106,7 @@ function add_graph(years) {
         .enter().append("path")
         .attr("d", path)
         .attr("id", function (d, i) {
-            return year_data[i]["country"];
+            return year_data[i]["country"].replace(/\s/g, '');
         })
         .on("mouseover", function (d) {
             tip.html(d["country"]);
@@ -248,9 +235,9 @@ function update_graph(years) {
         .text("Happiness variables from European countries in " + years)
         .style("font-style","italic");
 
-    if (arr.length > 0){
-        arr.forEach(function(d){
-            unhighlight_line(d.substring(0, d.length - 5));
+    if (arr2.length > 0){
+        arr2.forEach(function(d){
+            unhighlight_line(d);
         })
     }
 
@@ -267,24 +254,21 @@ function update_graph(years) {
     var update_1 = d3.select("#graph")
         .select("g.foreground")
         .selectAll("path")
-        .data(year_data)
-        .attr("id", function (d, i) {
-            return year_data[i]["country"];
-        })
-        .on("mouseover", function (d) {
-                tip.html(d["country"]);
-				return tip.style("visibility", "visible");})
-        .on("mousemove", function () {
-            return tip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px");})
-        .on("mouseout", function () {
-            return tip.style("visibility", "hidden");});
+        .data(year_data);
 
     var update_2 = d3.select("#graph")
         .select("g.background")
         .selectAll("path")
-        .data(year_data)
-        .attr("id", function (d, i) {
-            return year_data[i]["country"];
+        .data(year_data);
+
+    console.log(year_data);
+
+    update_1.exit().remove();
+    update_2.exit().remove();
+
+    update_1.attr("id", function (d, i) {
+            console.log(year_data[i]["country"].replace(/\s/g, ''));
+            return year_data[i]["country"].replace(/\s/g, '');
         })
         .on("mouseover", function (d) {
                 tip.html(d["country"]);
@@ -294,8 +278,17 @@ function update_graph(years) {
         .on("mouseout", function () {
             return tip.style("visibility", "hidden");});
 
-    update_1.exit().remove();
-    update_2.exit().remove();
+    update_2.attr("id", function (d, i) {
+            console.log(year_data[i]["country"].replace(/\s/g, ''));
+            return year_data[i]["country"].replace(/\s/g, '');
+        })
+        .on("mouseover", function (d) {
+                tip.html(d["country"]);
+				return tip.style("visibility", "visible");})
+        .on("mousemove", function () {
+            return tip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px");})
+        .on("mouseout", function () {
+            return tip.style("visibility", "hidden");});
 
     // append paths
     var enter_1 = update_1.enter()
@@ -306,9 +299,9 @@ function update_graph(years) {
     update_1.merge(enter_1).transition().duration(800).attr("d", pathFunction);
     update_2.merge(enter_2).transition().duration(800).attr("d", pathFunction);
 
-    if (arr.length > 0){
-        arr.forEach(function(d){
-            highlight_line(d.substring(0, d.length - 5));
+    if (arr2.length > 0){
+        arr2.forEach(function(d){
+            highlight_line(d);
         })
     }
 }

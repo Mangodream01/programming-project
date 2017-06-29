@@ -157,7 +157,7 @@ function scatter(var1, var2) {
         .enter().append("circle")
         .classed("dot", true)
         .attr("id", function(d){
-            return d["country"] + "_" + d["year"];})
+            return d["country"].replace(/\s/g, '') + "_" + d["year"];})
         .attr("r",  5)
         .attr("transform", transform)
         .style("fill", function(d) {
@@ -169,7 +169,7 @@ function scatter(var1, var2) {
             }
         })
         .on("mouseover", function (d) {
-            tip.html(d["country"] + "<br>" +
+            tip.html(d["country"] + " " + d["year"] + "<br>" +
                 xCat + ": " + Math.round(d[xCat] * 100) / 100 + "<br>" +
                 yCat + ": " + Math.round(d[yCat] * 100) / 100);
             return tip.style("visibility", "visible");})
