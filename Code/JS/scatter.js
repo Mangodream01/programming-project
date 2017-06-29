@@ -217,15 +217,7 @@ function scatter(var1, var2) {
                 d.visible = !d.visible;
             }
         });
-
-        dots.style("visibility", function(d) {
-            if (d["visible"] == false){
-                return "hidden";
-            }
-            else{
-                return "visible";
-            }
-        });
+        change_visibility(dots);
     });
 
     // give X to scatter function
@@ -298,6 +290,10 @@ function update_scatter_years(year) {
 
     // hide or show dots in scatter plot
     var dots = d4.select("#scatter_div").selectAll(".dot");
+    change_visibility(dots);
+}
+
+function change_visibility(dots){
     dots.style("visibility", function(d) {
         if (d["visible"] == false){
             return "hidden";

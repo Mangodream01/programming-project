@@ -21,6 +21,19 @@ function unhighlight_line(country_name){
 // global function to draw paths
 var pathFunction;
 
+function mouse_over(tip, year_data){
+    tip.html(year_data["country"]);
+    return tip.style("visibility", "visible");
+}
+
+function mouse_move(tip){
+    return tip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px");
+}
+
+function mouse_out(tip){
+    return tip.style("visibility", "hidden");
+}
+
 // add parallel coordinates
 function add_graph(years) {
 
@@ -67,10 +80,10 @@ function add_graph(years) {
     // extract the list of dimensions and create a scale for each.
     x.domain(dimensions = d4.keys(happydata[0]).filter(function (d) {
         return d != "country" && d != "year" && (y[d] = d4.scale.linear()
-                .domain(d4.extent(happydata, function (p) {
-                    return +p[d];
-                }))
-                .range([height, 0]));
+            .domain(d4.extent(happydata, function (p) {
+                return +p[d];
+            }))
+            .range([height, 0]));
     }));
 
     //add tooltip parallel coordinates
@@ -91,8 +104,8 @@ function add_graph(years) {
             return year_data[i]["country"];
         })
         .on("mouseover", function (d) {
-                tip.html(d["country"]);
-				return tip.style("visibility", "visible");})
+            tip.html(d["country"]);
+            return tip.style("visibility", "visible");})
         .on("mousemove", function () {
             return tip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px");})
         .on("mouseout", function () {
