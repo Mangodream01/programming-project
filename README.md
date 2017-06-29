@@ -55,6 +55,9 @@ Jason Davies for his parallel coordinates
 Jonas Petersson for his zoomable scatter plot 
 (http://bl.ocks.org/peterssonjonas/4a0e7cb8d23231243e0e)
 
+Susie Lu for her d3 legend
+(http://d3-legend.susielu.com/#color-doc) 
+
 D Struths for his legend
 (http://bl.ocks.org/DStruths/9c042e3a6b66048b5bd4) 
 
