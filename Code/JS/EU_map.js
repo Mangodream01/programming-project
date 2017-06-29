@@ -72,8 +72,9 @@ window.onload = function() {
 
 		// add scatter plot
 		scatter(var1, var2);
-
 	});
+
+	$('#myModal0').modal('show');
 
 	// info pop over
 	$('[data-toggle="popover"]').popover({

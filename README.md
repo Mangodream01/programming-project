@@ -31,11 +31,17 @@ Source: http://worldhappiness.report/download/
 
 ### External libraries
 jQuery
+
 Bootstrap
+
 D3
+
 D3-tip
+
 TopoJSON
+
 DataMaps
+
 d3-legend
 ### Acknowledgements
 Grateful acknowledgement is given to the following:

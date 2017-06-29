@@ -1,5 +1,6 @@
 exclude:
 - /Code/JS/d3-legend.js
+- /Code/PY and files/data_to_json.py
 component_depth: 1
 languages:
 - javascript

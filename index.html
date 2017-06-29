@@ -32,17 +32,53 @@
         <!--the top (black) header-->
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
+                <!--<div>-->
+                    <!-- button -->
+                     <a title="info" data-toggle="modal" data-target="#myModal0">
+                            <img src="doc/info-logo0.png" width="35" height ="35"></a>
+
+                    <!-- modal -->
+                    <div class="modal fade" id="myModal0" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Variance in happiness through Europe</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Happiness is more and more thought of as a useful measure of social progress and,
+                                        therefore, an important target of public policy. Correspondingly, research to
+                                        determinants of happiness has been flourishing. On this web page, eleven
+                                        explanatory variables of life satisfaction in Europe are visualized, which are
+                                        considered to play an important role in the observed variation in happiness
+                                        between countries. Importantly, it should be noticed that these variables
+                                        indicate interesting notions of correlation (both with each other as with
+                                        unmeasured factors) rather than reflect clean causal relationships.
+                                        <br><br>
+                                        <img src="doc/Info-logo.jpg" width="20" height ="20"> Hover over information
+                                        icons for brief explanations.
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    <!--</div>-->
+                </div>
                 <div class="navbar-header">
                     <a class="navbar-brand navbar-brand-centered">
                         Variance in happiness through Europe
                     </a>
                 </div>
-			<ul class="nav navbar-nav navbar-right">
-				<li>
-					<a href="https://github.com/Mangodream01/programming-project">Thirza Dado</a>
-				</li>
-			</ul>
-		</div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://github.com/Mangodream01/programming-project">Thirza Dado</a>
+                    </li>
+                </ul>
+            </div>
         </nav>
         <div id="title">
             <h3>Happiness in Europe (2006-2015)</h3>
@@ -56,39 +92,39 @@
                 <h4> Pick a variable:</h4>
                 <ul class="list-group">
                     <li class="list-group-item"><a class="m" value="Life Ladder">Life Ladder</a>
-                        <a href="#" title="Cantril Self-Anchoring Scale" data-toggle="popover" data-trigger="hover"
+                        <a title="Cantril Self-Anchoring Scale" data-toggle="popover" data-trigger="hover"
                            data-content="Imagine a ladder with steps 0 (bottom) to 10 (top). The top
                            represents the best possible life for you and the bottom the worst possible life for you.
                            On which step of the ladder would you say you personally feel you stand at this time?">
                             <img src="doc/Info-logo.jpg" width="15" height ="15"></a>
                     </li>
                     <li class="list-group-item"><a class="m" value="Log GDP per capita">Log GDP per capita</a>
-                     <a href="#" title="Gross domestic product (GDP)" data-toggle="popover" data-trigger="hover"
+                     <a title="Gross domestic product (GDP)" data-toggle="popover" data-trigger="hover"
                         data-content="A measure of market value of final goods and services, and can be used to estimate
                         the health of a country’s economy.">
                             <img src="doc/Info-logo.jpg" width="15" height ="15"></a>
                     </li>
                     <li class="list-group-item"><a class="m" value="Social support">Social support</a>
-                     <a href="#" title="Social support" data-toggle="popover" data-trigger="hover"
+                     <a title="Social support" data-toggle="popover" data-trigger="hover"
                         data-content="The perception and actuality that one is cared for, has assistance available from
                         other people, and that one is part of a supportive social network.">
                             <img src="doc/Info-logo.jpg" width="15" height ="15"></a>
                     </li>
                     <li class="list-group-item"><a class="m" value="Healthy life expectancy at birth">
                                                    Healthy life expectancy at birth</a>
-                        <a href="#" title="Healthy life expectancy at birth" data-toggle="popover" data-trigger="hover"
+                        <a title="Healthy life expectancy at birth" data-toggle="popover" data-trigger="hover"
                         data-content="Computation of number of years of life expected to be lived in full health.">
                             <img src="doc/Info-logo.jpg" width="15" height ="15"></a>
                     </li>
                     <li class="list-group-item"><a class="m" value="Freedom to make life choices">
                                                    Freedom to make life choices</a>
-                        <a href="#" title="Freedom to make life choices" data-toggle="popover" data-trigger="hover"
+                        <a title="Freedom to make life choices" data-toggle="popover" data-trigger="hover"
                         data-content="The national average of responses to the question “Are you satisfied or
                         dissatisfied with your freedom to choose what you do with your life?”">
                             <img src="doc/Info-logo.jpg" width="15" height ="15"></a>
                     </li>
                     <li class="list-group-item"><a class="m" value="Generosity">Generosity</a>
-                        <a href="#" title="Generosity" data-toggle="popover" data-trigger="hover"
+                        <a title="Generosity" data-toggle="popover" data-trigger="hover"
                         data-content="The national average of responses to questions like: “helped a stranger, or
                         someone they didn’t know who needed help”, “donated money to a charity”, and “volunteered your
                         time to an organization”.">
@@ -96,7 +132,7 @@
                     </li>
                     <li class="list-group-item"><a class="m" value="Perceptions of corruption">
                                                    Perceptions of corruption</a>
-                        <a href="#" title="Perceptions of corruption" data-toggle="popover" data-trigger="hover"
+                        <a title="Perceptions of corruption" data-toggle="popover" data-trigger="hover"
                         data-content="The national average of responses to questions like: is corruption widespread
                         throughout the government or not” and “Is corruption widespread within businesses or not?” Where
                         data for government corruption are missing, the perception of business corruption is used as the
@@ -104,18 +140,18 @@
                             <img src="doc/Info-logo.jpg" width="15" height ="15"></a>
                     </li>
                     <li class="list-group-item"><a class="m" value="Positive affect">Positive affect</a>
-                     <a href="#" title="Positive affect" data-toggle="popover" data-trigger="hover"
+                     <a title="Positive affect" data-toggle="popover" data-trigger="hover"
                         data-content="The average of previous-day affect measures for happiness, laughter and enjoyment.">
                             <img src="doc/Info-logo.jpg" width="15" height ="15"></a>
                     </li>
                     <li class="list-group-item"><a class="m" value="Negative affect">Negative affect</a>
-                     <a href="#" title="Negative affect" data-toggle="popover" data-trigger="hover"
+                     <a title="Negative affect" data-toggle="popover" data-trigger="hover"
                         data-content="The average of previous-day affect measures for worry, sadness and anger.">
                             <img src="doc/Info-logo.jpg" width="15" height ="15"></a>
                     </li>
                     <li class="list-group-item"><a class="m" value="Confidence in national government">
                                                    Confidence in national government</a>
-                        <a href="#" title="Confidence in national government" data-toggle="popover" data-trigger="hover"
+                        <a title="Confidence in national government" data-toggle="popover" data-trigger="hover"
                         data-content="The national average of responses to questions like: I am going to read you a list
                         of institutions in society (e.g. military, small business, police, church, medical system).
                         Please tell me much confidence you, yourself, have in each one -- a great deal, quite a lot,
@@ -123,7 +159,7 @@
                             <img src="doc/Info-logo.jpg" width="15" height ="15"></a>
                     </li>
                     <li class="list-group-item"><a class="m" value="Democratic Quality">Democratic Quality</a>
-                     <a href="#" title="Democratic Quality" data-toggle="popover" data-trigger="hover"
+                     <a title="Democratic Quality" data-toggle="popover" data-trigger="hover"
                         data-content="Estimation by multiple dimensions on which democracies vary in quality. These
                         dimensions are closely linked and tend to move together, either toward democratic improvement
                         and deepening or toward decay.">
@@ -139,16 +175,85 @@
             <li><a data-toggle="tab" href="#menu2">Scatter plot</a></li>
         </ul>
 
+
         <div class="tab-content">
             <div id="menu1" class="tab-pane fade in active">
-                <h3>Parallel coordinates</h3>
+                <!--parallel coordinates-->
+                 <div class="pc_button">
+                    <h3>Parallel coordinates
+                    <!-- button -->
+                     <a title="PC" data-toggle="modal" data-target="#myModal">
+                            <img src="doc/Info-logo.jpg" width="25" height ="25"></a></h3>
+
+                    <!-- modal -->
+                    <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Parallel coordinates</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Parallel coordinates are a means to analyze multivariate data. Since no natural
+                                        order of axes exists, multiple arrangements are possible. Discover relationships
+                                        between variables by dragging axes to other positions. A positive relationship
+                                        between two variables is suggested when lines between two adjacent axes are
+                                        somewhat parallel to each other, a negative relationship is suggested when most
+                                        lines cross, and randomly or parallel lines suggest no particular relationship.
+                                        It is possible to select a region of interest and drag it within one axis.
+                                        Furthermore, interesting relationships can be viewed more closely in the
+                                        zoomable scatter plot visualization (next tab).
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div id="subtitle"></div>
                 <div id="graph_div"></div>
             </div>
 
-
+            <!--scatter plot-->
             <div id="menu2" class="tab-pane fade">
-                <h3>Zoomable scatter plot</h3>
+                <div class="pc_button">
+                    <h3>Zoomable scatter plot
+                    <!-- button -->
+                     <a title="SP" data-toggle="modal" data-target="#myModal2">
+                            <img src="doc/Info-logo.jpg" width="25" height ="25"></a></h3>
+
+                    <!-- modal -->
+                    <div class="modal fade" id="myModal2" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Parallel coordinates</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Scatter plots demonstrate data values of two variables on Cartesian coordinates.
+                                        The X and Y variable can be selected in the right-sided dropdown menus. The axes
+                                        scale dynamically with the new data points. Clicking on a country in the EU data
+                                        map will highlight the corresponding data point in the scatter plot. Click again
+                                        to un-highlight. Moreover, when changing year by the time slider, the scatter
+                                        plot will update and only display the data points in this specific year. Click
+                                        on years in the legend to display multiple years for comparison (highlighted
+                                        data points will remain highlighted despite slider updates).
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div id="wrapper">
 
                     <!--dropdown X var-->
