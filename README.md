@@ -3,6 +3,8 @@
 By Thirza Dado
 
 Happiness is more and more thought of as a useful measure of social progress and, therefore, an important target of public policy. Correspondingly, research to determinants of happiness has been flourishing. This repository contains a d3 visualization of  eleven measurements of life satisfaction in Europe by the Gallup World Poll. Importantly, it should be noticed that these variables indicate interesting notions of correlation (both with each other as with unmeasured factors) rather than reflect clean causal relationships.
+
+Click [here](https://mangodream01.github.io/programming-project/) to view the visualisation.
 ### Map of Europe (EU_map.js)
 After the web page has been initialized, the EU map displays variation of “Life Ladder” in 2012 by color coding. The user can switch variables by clicking on items in the right-sided list. The subtitle and legend change dynamically with the selected variable. The user can hover over the icon next to the list item for a brief explanation in a pop-up. Furthermore, the time slider below the map allows the user to view differences in variation over the time course 2006-2015. Lastly, hovering over a country displays a tooltip with country name, variable name, and variable value, whereas clicking on a country leads to highlighting of this data point (country in this year) in the other two visualizations. 
 
@@ -49,4 +51,8 @@ Jonas Petersson for his zoomable scatter plot
 
 D Struths for his legend
 (http://bl.ocks.org/DStruths/9c042e3a6b66048b5bd4) 
+
+
+[![BCH compliance](https://bettercodehub.com/edge/badge/Mangodream01/programming-project?branch=master)](https://bettercodehub.com/)
+
 
