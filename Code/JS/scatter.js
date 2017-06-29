@@ -15,6 +15,27 @@ function unhighlight_dot(dot_name){
     return d3.select(dot_name).style("fill-opacity", 0.3);
 }
 
+function set_limits_axes(x, y, xCat, yCat){
+    var xMax = d4.max(happydata, function(d) {
+        return d[xCat];
+    }) * 1.05,
+    xMin = d4.min(happydata, function(d) {
+        return d[xCat];
+    }),
+    xMin = xMin > 0 ? 0 : xMin,
+    yMax = d4.max(happydata,
+        function(d) {
+        return d[yCat];
+    }) * 1.05,
+    yMin = d4.min(happydata, function(d) {
+            return d[yCat];
+    }),
+    yMin = yMin > 0 ? 0 : yMin;
+
+    x.domain([xMin, xMax]);
+    y.domain([yMin, yMax]);
+}
+
 // add a scatter plot
 function scatter(var1, var2) {
 
@@ -45,24 +66,7 @@ function scatter(var1, var2) {
         d["visible"] = true;
     });
 
-    var xMax = d4.max(happydata, function(d) {
-        return d[xCat];
-    }) * 1.05,
-    xMin = d4.min(happydata, function(d) {
-        return d[xCat];
-    }),
-    xMin = xMin > 0 ? 0 : xMin,
-    yMax = d4.max(happydata,
-        function(d) {
-        return d[yCat];
-    }) * 1.05,
-    yMin = d4.min(happydata, function(d) {
-            return d[yCat];
-    }),
-    yMin = yMin > 0 ? 0 : yMin;
-
-    x.domain([xMin, xMax]);
-    y.domain([yMin, yMax]);
+    set_limits_axes(x, y, xCat, yCat);
 
     var xAxis = d4.svg.axis()
         .scale(x)
@@ -245,24 +249,7 @@ function scatter(var1, var2) {
         yMax = d4.max(happydata, function(d) { return d[yCat]; });
         yMin = d4.min(happydata, function(d) { return d[yCat]; });
 
-        var xMax = d4.max(happydata, function(d) {
-        return d[xCat];
-        }) * 1.05,
-        xMin = d4.min(happydata, function(d) {
-            return d[xCat];
-        }),
-        xMin = xMin > 0 ? 0 : xMin,
-        yMax = d4.max(happydata,
-            function(d) {
-            return d[yCat];
-        }) * 1.05,
-        yMin = d4.min(happydata, function(d) {
-                return d[yCat];
-        }),
-        yMin = yMin > 0 ? 0 : yMin;
-
-        x.domain([xMin, xMax]);
-        y.domain([yMin, yMax]);
+        set_limits_axes(x, y, xCat, yCat);
 
         // update data
         zoomBeh.x(x.domain([xMin, xMax])).y(y.domain([yMin, yMax]));
